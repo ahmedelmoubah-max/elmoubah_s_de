@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>صفحة التلميذ</title>
+<style>
+:root{--bg:#0f172a;--panel:#fff;--muted:#64748b;--text:#0f172a;--brand:#2563eb;--brand2:#1e40af;--line:#e2e8f0;--good:#16a34a;--bad:#dc2626;--warn:#f59e0b;--shadow:0 18px 45px rgba(15,23,42,.13);--radius:24px}
+*{box-sizing:border-box}body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:radial-gradient(circle at 90% 0%,rgba(37,99,235,.30),transparent 34%),radial-gradient(circle at 10% 25%,rgba(22,163,74,.14),transparent 28%),linear-gradient(135deg,#0f172a,#1e293b);min-height:100vh;color:var(--text);padding:24px}button,.btn{border:0;border-radius:15px;padding:11px 15px;font-weight:900;cursor:pointer;background:var(--brand);color:white;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}button:hover,.btn:hover{background:var(--brand2)}.btn-gray{background:#e2e8f0;color:#0f172a}.btn-green{background:var(--good)}.btn-red{background:var(--bad)}.btn-yellow{background:var(--warn);color:#1f2937}.small{padding:8px 11px;font-size:12px;border-radius:12px}.wrap{max-width:1180px;margin:auto}.top{color:white;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.top h1{margin:0;font-size:32px}.top p{margin:8px 0 0;color:#cbd5e1;line-height:1.7}.actions{display:flex;gap:8px;flex-wrap:wrap}.card{background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.68);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.muted{color:var(--muted)}.pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-weight:950;font-size:12px}.pill.green{background:#dcfce7;color:#15803d}.pill.red{background:#fee2e2;color:#b91c1c}.pill.yellow{background:#fef3c7;color:#92400e}.grid{display:grid;gap:14px}.hero{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-bottom:16px}.student-box{display:flex;gap:14px;align-items:center}.avatar{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#2563eb,#16a34a);color:#fff;display:grid;place-items:center;font-size:28px;font-weight:950}.student-box h2{margin:0 0 6px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{border-radius:18px;background:#f8fafc;border:1px solid var(--line);padding:14px}.stat .value{font-size:30px;font-weight:950}.stat .label{font-size:12px;color:var(--muted);font-weight:900}.portal-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.tab-btn{background:rgba(255,255,255,.92);color:#0f172a;border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow);min-height:92px;border-radius:22px;justify-content:flex-start;text-align:right;padding:18px}.tab-btn:hover{background:#fff;color:#1e3a8a}.tab-btn.active{background:#dbeafe;color:#1e40af;border-color:#93c5fd}.tab-icon{font-size:28px}.tab-text b{display:block;font-size:17px}.tab-text span{display:block;font-size:12px;color:var(--muted);margin-top:4px}.section{display:none}.section.active{display:block}.level-title{color:white;margin:24px 0 12px;display:flex;align-items:center;gap:10px}.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.lesson-card h3{margin:10px 0 8px}.lesson-card p{margin:0 0 14px;line-height:1.65}.exam-list{display:grid;gap:12px}.exam-card{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:20px;background:white;padding:16px}.exam-card h3{margin:0 0 7px}.exam-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.exam-group-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 10px}.exam-group-head h2{margin:0;color:#0f172a}.exam-group-head p{margin:4px 0 0;color:#64748b;font-size:12px;font-weight:800}.empty{text-align:center;padding:34px;color:var(--muted);border:1px dashed #cbd5e1;border-radius:20px;background:white}.ltr{direction:ltr;text-align:left}table{width:100%;border-collapse:collapse;background:white;border-radius:18px;overflow:hidden}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}th{font-size:12px;color:#475569;background:#f8fafc}.result-score{font-weight:950}.result-time{display:grid;gap:4px;font-size:12px}.modal{position:fixed;inset:0;background:rgba(15,23,42,.65);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.open{display:flex}.modal-box{max-width:760px;width:100%;max-height:92vh;overflow:auto}.student-picker{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.student-link{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:18px;background:white;padding:14px;text-decoration:none;color:#0f172a;font-weight:900}.student-link:hover{background:#eff6ff}.notice{padding:14px 16px;border-radius:18px;background:#eff6ff;color:#1e3a8a;border:1px solid #bfdbfe;font-weight:800;line-height:1.7}@media(max-width:960px){.hero{grid-template-columns:1fr}.portal-tabs{grid-template-columns:1fr}.lesson-grid{grid-template-columns:1fr 1fr}.exam-card{flex-direction:column;align-items:flex-start}.student-picker{grid-template-columns:1fr}}@media(max-width:560px){body{padding:14px}.top{flex-direction:column}.lesson-grid,.stats{grid-template-columns:1fr}th,td{font-size:12px;padding:9px}}
+.level-section{border:1px solid var(--line);border-radius:22px;background:rgba(248,250,252,.96);padding:16px;margin:14px 0}.level-section:first-child{margin-top:0}.level-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.level-head h2,.level-head h3{margin:0;color:#0f172a}.level-head p{margin:5px 0 0;color:var(--muted);font-size:12px;font-weight:800}.level-content{display:grid;gap:12px}.level-content.lesson-grid{grid-template-columns:repeat(3,1fr)}@media(max-width:960px){.level-content.lesson-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.level-content.lesson-grid{grid-template-columns:1fr}}
+
+
+/* grouped partial exams */
+.partial-groups{display:grid;gap:12px}.partial-exam-group{background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 26px rgba(15,23,42,.06)}.partial-group-toggle{width:100%;background:#f8fafc;color:#0f172a;border:0;border-radius:0;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:right}.partial-group-toggle:hover{background:#eff6ff;color:#1e40af}.partial-group-title{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.partial-group-title b{font-size:18px}.partial-group-sub{font-size:12px;color:#64748b;font-weight:900;margin-top:4px}.partial-group-arrow{font-size:18px;transition:transform .2s ease}.partial-exam-group.open .partial-group-arrow{transform:rotate(180deg)}.partial-parts{display:none;padding:14px;background:#fff;gap:10px}.partial-exam-group.open .partial-parts{display:grid}.partial-part-grid{grid-template-columns:repeat(4,1fr)}.partial-part-card{border:1px solid var(--line);border-radius:18px;background:#fbfdff;padding:14px;display:flex;flex-direction:column;gap:8px}.partial-part-card h3{margin:0;color:#0f172a}.partial-part-card p{margin:0;color:#64748b;font-size:12px;line-height:1.6}.partial-part-card .btn{margin-top:auto}@media(max-width:960px){.partial-part-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.partial-group-toggle{align-items:flex-start;flex-direction:column}.partial-part-grid{grid-template-columns:1fr}}
+
+.chart-card{margin-bottom:16px}.chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}.chart-head h3{margin:0 0 6px;color:#0f172a}.chart-head p{margin:0;line-height:1.7}.result-chart-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fff,#f8fafc);padding:10px}.result-chart{display:block;width:100%;min-width:680px;height:320px}.chart-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.legend-item{display:inline-flex;align-items:center;gap:7px;font-weight:900;color:#334155;font-size:12px}.legend-dot{width:12px;height:12px;border-radius:999px;background:#2563eb}.legend-bar{width:18px;height:10px;border-radius:999px;background:rgba(37,99,235,.20);border:1px solid rgba(37,99,235,.35)}.chart-summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chart-summary .pill{background:#eff6ff;color:#1e3a8a}@media(max-width:560px){.chart-head{flex-direction:column}.result-chart{min-width:620px;height:300px}}
+
+
+
+/* ===== HIDE PARTIAL EXAM PARTS UNTIL CLICK =====
+   الأجزاء الجزئية تبقى مخفية تماماً حتى يضغط المستخدم على زر اسم الامتحان. */
+.partial-exam-group:not(.open) > .partial-parts,
+.partial-exam-group:not(.open) > .partial-parts.partial-part-grid {
+  display: none !important;
+}
+.partial-exam-group.open > .partial-parts,
+.partial-exam-group.open > .partial-parts.partial-part-grid {
+  display: grid !important;
+}
+.partial-group-toggle {
+  cursor: pointer;
+}
+
+
+
+/* ===== STUDENT FIREBASE LOGIN / REGISTER — MATCHED DARK LOGIN DESIGN ===== */
+.auth-card{
+  width:min(560px,100%);
+  max-width:560px;
+  margin:24px auto;
+  background:rgba(30,41,59,.96)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:28px!important;
+  padding:28px!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.25)!important;
+  color:white!important;
+}
+.auth-card h2{margin:0 0 8px!important;font-size:28px;color:white!important}
+.auth-card p,.auth-card .muted{margin:0 0 18px;color:#cbd5e1!important;line-height:1.8;font-weight:700}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#0f172a;border:1px solid #334155;border-radius:18px;padding:5px;margin-bottom:16px;gap:0}
+.auth-tabs button{background:transparent!important;color:#cbd5e1!important;border:0;border-radius:14px;padding:12px;font-weight:900;cursor:pointer;box-shadow:none!important}
+.auth-tabs button:hover{background:rgba(255,255,255,.08)!important;color:white!important}
+.auth-tabs button.active{background:#2563eb!important;color:white!important}
+.auth-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:right}
+.auth-form .full{grid-column:1/-1}
+.auth-form label{display:block;font-size:13px;font-weight:900;margin:12px 0 7px;color:#e2e8f0!important}
+.auth-form input,.auth-form select{width:100%;border:1px solid #334155!important;border-radius:14px;padding:12px 13px;font:inherit;background:white!important;color:#0f172a!important}
+.auth-form input[type=email],.auth-form .ltr{direction:ltr;text-align:left}
+.auth-form .actions{margin-top:0}
+.auth-form button[type=submit]{width:100%;border:0;border-radius:16px;padding:13px 16px;font-weight:950;cursor:pointer;color:white;background:#2563eb;font-family:inherit;margin-top:14px;justify-content:center}
+.auth-form button[type=submit]:hover{background:#1e40af}
+.auth-form button[type=submit].btn-green{background:#16a34a}
+.auth-form button[type=submit].btn-green:hover{background:#15803d}
+.auth-error{display:none;margin-top:14px;background:#450a0a!important;border:1px solid #7f1d1d!important;color:#fecaca!important;border-radius:16px;padding:13px 14px;font-weight:800;line-height:1.7}
+.auth-error.show{display:block}
+.firebase-sync-note{margin-top:14px;border:1px solid #334155!important;background:#0f172a!important;color:#dbeafe!important;border-radius:16px;padding:13px 14px;font-weight:800;line-height:1.7}
+.auth-card .ltr{direction:ltr;text-align:left}
+@media(max-width:700px){.auth-form{grid-template-columns:1fr}.auth-tabs{grid-template-columns:1fr}.auth-card{padding:20px!important}}
+
+
+/* ===== STUDENT REMOTE FILE VIEWER FROM FIREBASE ===== */
+.student-file-modal{position:fixed;inset:0;background:rgba(15,23,42,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.student-file-modal.open{display:flex}.student-file-box{width:min(1080px,100%);height:min(88vh,900px);background:#fff;border-radius:24px;box-shadow:0 24px 70px rgba(0,0,0,.30);padding:16px;display:flex;flex-direction:column;gap:12px}.student-file-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.student-file-head h3{margin:0;color:#0f172a}.student-file-view{flex:1;min-height:420px;border:1px solid #e2e8f0;border-radius:18px;overflow:auto;background:#fff}.student-file-view iframe{width:100%;height:100%;border:0}.student-file-view img{max-width:100%;height:auto;display:block;margin:auto}.missing-file-note{margin-top:10px;border:1px solid #fecaca;background:#fef2f2;color:#991b1b;border-radius:14px;padding:10px;font-weight:800;line-height:1.7}
+
+
+/* ===== RESULT DETAILS REVIEW ===== */
+.result-detail-view{direction:rtl;text-align:right;color:#0f172a;line-height:1.7}.result-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 14px}.result-summary-box{border:1px solid #e2e8f0;border-radius:16px;background:#f8fafc;padding:12px}.result-summary-box b{display:block;font-size:12px;color:#64748b;margin-bottom:4px}.result-summary-box span{font-weight:950;color:#0f172a}.result-review-section{margin-top:16px}.result-question-card{border:1px solid #e2e8f0;border-radius:16px;background:#fff;padding:12px;margin:10px 0}.result-question-card.ok{border-color:#86efac;background:#f0fdf4}.result-question-card.bad{border-color:#fecaca;background:#fff1f2}.result-question-card.unknown{border-color:#cbd5e1}.result-question-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.result-answer-row{display:grid;grid-template-columns:150px 1fr;gap:10px;border-top:1px dashed #cbd5e1;padding-top:8px;margin-top:8px}.result-answer-row .label{font-size:12px;font-weight:950;color:#64748b}.result-answer-row .value{direction:ltr;text-align:left;unicode-bidi:plaintext;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:8px;white-space:pre-wrap}.result-raw-json{direction:ltr;text-align:left;white-space:pre-wrap;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;max-height:280px;overflow:auto;margin-top:12px}@media(max-width:700px){.result-summary-grid{grid-template-columns:1fr 1fr}.result-answer-row{grid-template-columns:1fr}}
+
+/* ===== SMART ATTEMPT DROPDOWN ===== */
+.attempt-picker{position:relative;display:inline-block;min-width:150px}
+.attempt-picker details{position:relative}
+.attempt-picker summary{list-style:none;cursor:pointer;user-select:none;justify-content:center}
+.attempt-picker summary::-webkit-details-marker{display:none}
+.attempt-menu{position:fixed;z-index:9999;min-width:260px;max-width:min(340px,calc(100vw - 24px));max-height:min(70vh,380px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 45px rgba(15,23,42,.22);padding:8px;display:grid;gap:6px;overscroll-behavior:contain}
+.attempt-menu button{width:100%;background:#f8fafc;color:#0f172a;border:1px solid var(--line);border-radius:12px;justify-content:space-between;text-align:right;padding:9px 10px;gap:12px}
+.attempt-menu button:hover{background:#eff6ff;color:#1e40af}
+.attempt-menu button.active{background:#2563eb;color:#fff;border-color:#1e40af}
+.attempt-row-selected{background:#f8fafc}
+.result-student-email{direction:ltr;text-align:left;unicode-bidi:plaintext;color:#64748b;font-size:12px;margin-top:4px;font-weight:800}
+.attempt-mini{font-size:11px;opacity:.85;margin-right:8px}
+.result-cell-live{transition:background .22s ease}
+.result-cell-live.flash{background:#eff6ff}
+.grouped-results-note{margin-top:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:10px;color:#334155;font-weight:800;line-height:1.6}
+.attempt-action-cell{min-width:110px}
+@media(max-width:720px){.attempt-picker{width:100%}.attempt-picker summary{width:100%}.result-student-email{text-align:right}.attempt-action-cell,.attempt-action-cell button{width:100%}.attempt-menu{min-width:calc(100vw - 24px);max-width:calc(100vw - 24px)}}
+
+
+/* ===== FULL SECTION PAGES FOR STUDENT PORTAL =====
+   الدروس / التمارين / الامتحانات / النتائج / الإعدادات تفتح كصفحات مستقلة كاملة. */
+body.dk-section-page{padding:18px;background:linear-gradient(135deg,#0f172a,#1e293b)}
+body.dk-section-page .wrap{max-width:none;width:100%}
+body.dk-section-page .hero,
+body.dk-section-page .portal-tabs{display:none!important}
+body.dk-section-page .top{margin-bottom:14px;padding:2px 4px}
+body.dk-section-page .top h1{font-size:30px}
+.section-page-head{display:none;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.74);border-radius:24px;box-shadow:var(--shadow);padding:18px 20px}
+.section-page-title{display:flex;align-items:center;gap:12px;min-width:0}
+.section-page-icon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;background:#dbeafe;color:#1e40af;font-size:28px;flex:0 0 auto}
+.section-page-title h2{margin:0;color:#0f172a;font-size:24px}
+.section-page-title p{margin:5px 0 0;color:#64748b;font-weight:800;line-height:1.6}
+.section-page-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+body.dk-section-page .section.active{display:block;width:100%}
+body.dk-section-page .level-section,
+body.dk-section-page .card{box-shadow:0 14px 38px rgba(15,23,42,.10)}
+body.dk-section-page .level-content.lesson-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+body.dk-section-page .partial-part-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+@media(max-width:720px){body.dk-section-page{padding:12px}.section-page-head{align-items:flex-start;flex-direction:column}.section-page-actions,.section-page-actions .btn{width:100%}.section-page-title h2{font-size:21px}}
+
+
+
+/* ===== PROFESSIONAL SAME-PAGE FULL SECTIONS V6 ===== */
+.portal-tabs{grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin:18px 0 22px;align-items:stretch}
+.tab-btn{position:relative;overflow:hidden;isolation:isolate;min-height:112px;border-radius:26px;padding:18px;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,246,255,.94));border:1px solid rgba(148,163,184,.30);box-shadow:0 16px 38px rgba(15,23,42,.12);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;color:#0f172a}
+.tab-btn:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(180deg,#60a5fa,#2563eb,#16a34a);opacity:.55;transition:width .22s ease,opacity .22s ease;z-index:-1}
+.tab-btn:after{content:"";position:absolute;inset:-60px -80px auto auto;width:170px;height:170px;background:radial-gradient(circle,rgba(37,99,235,.16),transparent 66%);opacity:.55;transition:transform .25s ease,opacity .25s ease;z-index:-1}
+.tab-btn:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(15,23,42,.18);border-color:rgba(37,99,235,.34);background:linear-gradient(135deg,#fff,#eff6ff)}
+.tab-btn:hover:before{width:9px;opacity:.9}.tab-btn:hover:after{transform:scale(1.08);opacity:.8}
+.tab-btn.active{background:linear-gradient(135deg,#dbeafe,#ffffff);color:#1e40af;border-color:#60a5fa;box-shadow:0 24px 58px rgba(37,99,235,.20)}
+.tab-btn.active:before{width:10px;opacity:1}.tab-btn.active:after{opacity:1}
+.tab-icon{width:50px;height:50px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#eff6ff,#dbeafe);box-shadow:inset 0 0 0 1px rgba(37,99,235,.10);font-size:27px;flex:0 0 auto;transition:transform .22s ease,background .22s ease}
+.tab-btn:hover .tab-icon{transform:scale(1.06)}.tab-btn.active .tab-icon{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
+.tab-text b{font-size:18px;letter-spacing:-.01em}.tab-text span{font-size:12.5px;line-height:1.55;color:#64748b}.tab-btn.active .tab-text span{color:#1e3a8a}
+.section.active{animation:dkFadeUp .22s ease both}@keyframes dkFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+body.dk-section-page .wrap,body.dk-inline-content-open .wrap{max-width:none;width:100%}
+.btn-gray:hover{background:#cbd5e1!important;color:#0f172a!important}.btn-red:hover{background:#b91c1c!important}.btn-green:hover{background:#15803d!important}
+body.dk-inline-content-open{padding:0!important;overflow:hidden;background:#0f172a}
+body.dk-inline-content-open .top,body.dk-inline-content-open #portal,body.dk-inline-content-open #notSelected{visibility:hidden;pointer-events:none}
+.inline-content-page{display:none;position:fixed;inset:0;z-index:999999;width:100vw;height:100vh;height:100dvh;min-height:100vh;background:#fff;border:0;border-radius:0;box-shadow:none;overflow:hidden;direction:rtl}
+.inline-content-head{height:96px;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid #e2e8f0;background:linear-gradient(135deg,#f8fafc,#eff6ff);box-shadow:0 12px 30px rgba(15,23,42,.08);position:relative;z-index:2}
+.inline-content-title{display:flex;align-items:center;gap:12px;min-width:0}.inline-content-icon{width:54px;height:54px;border-radius:19px;display:grid;place-items:center;background:linear-gradient(135deg,#2563eb,#1e40af);color:white;font-size:25px;flex:0 0 auto;box-shadow:0 12px 28px rgba(37,99,235,.25)}
+.inline-content-title h2{margin:0;color:#0f172a;font-size:24px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:min(58vw,780px)}.inline-content-title p{margin:5px 0 0;color:#64748b;font-weight:800;line-height:1.55}
+.inline-content-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.inline-content-actions .btn,.inline-content-actions button{border-radius:999px;min-height:42px;padding:10px 17px}.inline-content-view{height:calc(100vh - 96px);height:calc(100dvh - 96px);min-height:0;background:#fff;overflow:hidden}.inline-content-view iframe{width:100%;height:100%;border:0;background:#fff;display:block}.inline-content-view img{max-width:100%;height:auto;display:block;margin:auto}.inline-content-message{height:100%;display:grid;place-items:center;text-align:center;padding:28px;background:#f8fafc;color:#0f172a;line-height:1.8;font-weight:800}
+.content-open-btn{background:linear-gradient(135deg,#2563eb,#1e40af);box-shadow:0 10px 22px rgba(37,99,235,.22);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;border-radius:999px}.content-open-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(37,99,235,.30);filter:saturate(1.08)}
+/* ===== STUDENT ITEM ACTIONS + COMPLETED SPACE V8 ===== */
+.item-button-card{position:relative;overflow:hidden;border:1px solid rgba(148,163,184,.28);border-radius:22px;background:linear-gradient(135deg,#ffffff,#f8fbff);padding:16px;box-shadow:0 14px 34px rgba(15,23,42,.08);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;display:flex;flex-direction:column;gap:10px;min-height:210px}
+.item-button-card:hover{transform:translateY(-2px);box-shadow:0 22px 46px rgba(15,23,42,.13);border-color:rgba(37,99,235,.35)}
+.item-button-card.completed{border-color:rgba(22,163,74,.35);background:linear-gradient(135deg,#ffffff,#f0fdf4)}
+.item-button-card.hidden{display:none!important}.item-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.item-main-button{width:100%;text-align:right;justify-content:flex-start;gap:12px;background:linear-gradient(135deg,#eff6ff,#ffffff);color:#0f172a;border:1px solid #dbeafe;border-radius:18px;padding:14px 15px;box-shadow:none;min-height:64px}.item-main-button:hover{background:linear-gradient(135deg,#dbeafe,#ffffff);color:#1e40af;transform:translateY(-1px)}.item-main-icon{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:21px;flex:0 0 auto;box-shadow:0 10px 22px rgba(37,99,235,.23)}.item-main-text b{display:block;font-size:16px;line-height:1.35}.item-main-text span{display:block;margin-top:4px;color:#64748b;font-size:12px;font-weight:800;line-height:1.45}.item-desc{font-size:13px;line-height:1.65;color:#64748b;margin:0}.item-action-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:auto}.item-action-row button,.item-action-row .btn{width:100%;border-radius:14px;padding:10px 9px;font-size:12px;min-height:42px}.item-completed-btn{background:#16a34a}.item-completed-btn:hover{background:#15803d!important}.item-completed-btn.done{background:#dcfce7!important;color:#166534!important;cursor:default}.item-delete-btn{background:#fee2e2!important;color:#991b1b!important}.item-delete-btn:hover{background:#fecaca!important;color:#7f1d1d!important}.completed-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 16px}.completed-filter-btn{background:#fff;color:#0f172a;border:1px solid #e2e8f0;border-radius:18px;padding:13px 14px;box-shadow:0 10px 24px rgba(15,23,42,.07);justify-content:flex-start}.completed-filter-btn.active,.completed-filter-btn:hover{background:#dbeafe;color:#1e40af;border-color:#93c5fd}.completed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.completed-section{border:1px solid var(--line);border-radius:22px;background:rgba(248,250,252,.96);padding:16px;margin:14px 0}.completed-section h3{margin:0 0 8px}.completed-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}.soft-separator{height:1px;background:#e2e8f0;margin:8px 0}.completed-space-note{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:18px;padding:13px 15px;font-weight:800;line-height:1.7;margin-bottom:14px}
+@media(max-width:720px){.item-action-row{grid-template-columns:1fr}.completed-tabs{grid-template-columns:1fr}.item-main-button{align-items:flex-start}.item-main-icon{width:38px;height:38px}}
+
+@media(max-width:1100px){.portal-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.portal-tabs{grid-template-columns:1fr}.tab-btn{min-height:92px}.inline-content-head{height:auto;min-height:112px;align-items:flex-start;flex-direction:column;padding:14px}.inline-content-title h2{max-width:calc(100vw - 96px);font-size:20px}.inline-content-actions,.inline-content-actions .btn,.inline-content-actions button{width:100%}.inline-content-view{height:calc(100vh - 180px);height:calc(100dvh - 180px);min-height:0}}
+
+
+/* ===== PROFESSIONAL DELETE CONFIRMATION ===== */
+.dk-delete-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(15,23,42,.68);backdrop-filter:blur(6px);z-index:120}
+.dk-delete-overlay.open{display:flex}
+.dk-delete-dialog{width:min(520px,100%);background:#fff;border-radius:28px;box-shadow:0 28px 80px rgba(2,6,23,.34);border:1px solid rgba(255,255,255,.78);overflow:hidden;animation:dkDeleteIn .18s ease-out}
+@keyframes dkDeleteIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.dk-delete-head{display:flex;gap:14px;align-items:flex-start;padding:22px 22px 14px;background:linear-gradient(135deg,#fff7ed,#ffffff)}
+.dk-delete-icon{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:#fee2e2;color:#991b1b;font-size:26px;flex:0 0 auto}
+.dk-delete-title{margin:0;color:#0f172a;font-size:22px;line-height:1.35}
+.dk-delete-subtitle{margin:7px 0 0;color:#64748b;font-weight:800;line-height:1.7}
+.dk-delete-body{padding:0 22px 18px}
+.dk-delete-item{border:1px solid #e2e8f0;background:#f8fafc;border-radius:18px;padding:13px 14px;display:grid;gap:5px}
+.dk-delete-item b{color:#0f172a;font-size:15px}
+.dk-delete-item span{color:#64748b;font-size:12px;font-weight:900}
+.dk-delete-warning{margin-top:12px;border:1px solid #fed7aa;background:#fff7ed;color:#9a3412;border-radius:16px;padding:12px 13px;font-weight:850;line-height:1.7}
+.dk-delete-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 22px}
+.dk-delete-actions button{min-height:46px;border-radius:16px}
+.dk-delete-cancel{background:#e2e8f0!important;color:#0f172a!important}
+.dk-delete-confirm{background:#dc2626!important;color:#fff!important}
+.dk-delete-confirm:hover{background:#b91c1c!important}
+.dk-toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:140;width:min(560px,calc(100vw - 24px));background:#0f172a;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:12px 14px;box-shadow:0 18px 45px rgba(15,23,42,.30);display:flex;align-items:center;justify-content:space-between;gap:12px;transition:.18s ease}
+.dk-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.dk-toast b{font-size:14px}.dk-toast span{display:block;color:#cbd5e1;font-size:12px;font-weight:800;margin-top:3px;line-height:1.5}.dk-toast button{background:#dbeafe!important;color:#1e40af!important;border-radius:13px;padding:9px 12px;white-space:nowrap}
+@media(max-width:560px){.dk-delete-actions{grid-template-columns:1fr}.dk-delete-head{padding:18px 18px 12px}.dk-delete-body,.dk-delete-actions{padding-left:18px;padding-right:18px}.dk-toast{align-items:flex-start;flex-direction:column}.dk-toast button{width:100%}}
+
+
+
+/* ===== PROFESSIONAL RESULTS PAGE V10 ===== */
+.results-pro-page{display:grid;gap:16px}
+.results-hero-pro{position:relative;overflow:hidden;border-radius:30px;padding:24px;background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 54%,#2563eb 100%);color:#fff;box-shadow:0 26px 70px rgba(15,23,42,.22);border:1px solid rgba(255,255,255,.16)}
+.results-hero-pro:before{content:"";position:absolute;inset:auto -90px -110px auto;width:310px;height:310px;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 68%)}
+.results-hero-pro:after{content:"";position:absolute;inset:-90px auto auto -90px;width:250px;height:250px;background:radial-gradient(circle,rgba(34,197,94,.20),transparent 66%)}
+.results-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr);gap:18px;align-items:center}
+.results-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);font-weight:950;font-size:12px;margin-bottom:12px}
+.results-hero-pro h2{margin:0;font-size:32px;letter-spacing:-.03em;color:#fff}.results-hero-pro p{margin:10px 0 0;color:#dbeafe;font-weight:800;line-height:1.8;max-width:760px}.results-hero-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.results-hero-actions .btn{border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(8px)}.results-hero-actions .btn:hover{background:rgba(255,255,255,.24)}
+.results-grade-panel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.13);backdrop-filter:blur(10px)}
+.results-grade-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.results-grade-number{font-size:42px;font-weight:950;line-height:1;letter-spacing:-.04em}.results-grade-label{font-size:12px;font-weight:950;color:#bfdbfe}.results-progress-track{height:12px;background:rgba(15,23,42,.32);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}.results-progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#22c55e,#60a5fa);width:0%;transition:width .35s ease}.results-grade-note{margin-top:12px;color:#dbeafe;font-weight:850;font-size:13px;line-height:1.65}
+.results-metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.result-metric-card{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(135deg,#fff,#f8fbff);border:1px solid rgba(148,163,184,.30);box-shadow:0 16px 38px rgba(15,23,42,.09);padding:16px;min-height:116px}.result-metric-card:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(180deg,#2563eb,#16a34a);opacity:.9}.result-metric-icon{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:#eff6ff;color:#1e40af;font-size:22px;margin-bottom:10px}.result-metric-label{font-size:12px;color:#64748b;font-weight:950}.result-metric-value{font-size:30px;font-weight:950;color:#0f172a;line-height:1;margin-top:5px;letter-spacing:-.03em}.result-metric-sub{font-size:12px;color:#64748b;font-weight:800;margin-top:7px;line-height:1.5}
+.results-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,.96);border:1px solid rgba(226,232,240,.88);border-radius:24px;box-shadow:0 14px 34px rgba(15,23,42,.08);padding:12px}.results-filter-title{font-weight:950;color:#0f172a}.results-filter-chips{display:flex;gap:8px;flex-wrap:wrap}.results-chip{background:#f8fafc;color:#0f172a;border:1px solid #e2e8f0;border-radius:999px;padding:10px 14px;font-weight:950;cursor:pointer;transition:background .18s ease,transform .18s ease,color .18s ease,border-color .18s ease}.results-chip:hover{background:#eff6ff;color:#1e40af;transform:translateY(-1px)}.results-chip.active{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 12px 24px rgba(37,99,235,.22)}
+.result-pro-section{display:grid;gap:14px}.result-section-head-pro{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:24px;padding:18px;box-shadow:0 14px 34px rgba(15,23,42,.08)}.result-section-head-pro h3{margin:0;color:#0f172a;font-size:22px}.result-section-head-pro p{margin:6px 0 0;color:#64748b;font-weight:800;line-height:1.7}.result-section-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.result-chart-card-pro{background:#fff;border:1px solid #e2e8f0;border-radius:26px;box-shadow:0 18px 44px rgba(15,23,42,.10);padding:16px;overflow:hidden}.result-chart-wrap.pro{border:0;background:linear-gradient(180deg,#f8fafc,#fff);padding:10px;border-radius:20px}.result-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}.result-pro-card{position:relative;overflow:hidden;background:linear-gradient(135deg,#ffffff,#f8fbff);border:1px solid rgba(148,163,184,.30);border-radius:26px;padding:16px;box-shadow:0 16px 38px rgba(15,23,42,.09);display:flex;flex-direction:column;gap:12px;min-height:248px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.result-pro-card:hover{transform:translateY(-2px);box-shadow:0 24px 54px rgba(15,23,42,.15);border-color:rgba(37,99,235,.35)}.result-pro-card.exam:before,.result-pro-card.exercise:before{content:"";position:absolute;inset:0 auto 0 0;width:6px}.result-pro-card.exam:before{background:linear-gradient(180deg,#2563eb,#1e40af)}.result-pro-card.exercise:before{background:linear-gradient(180deg,#f59e0b,#16a34a)}.result-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.result-title-wrap{min-width:0}.result-title-wrap h4{margin:0;color:#0f172a;font-size:17px;line-height:1.45}.result-title-wrap p{margin:5px 0 0;color:#64748b;font-size:12px;font-weight:850;line-height:1.5}.result-status-pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-weight:950;font-size:12px;white-space:nowrap}.result-status-good{background:#dcfce7;color:#15803d}.result-status-mid{background:#fef3c7;color:#92400e}.result-status-bad{background:#fee2e2;color:#b91c1c}.result-score-panel{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:12px}.result-score-circle{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#2563eb var(--p,0deg),#e2e8f0 0);position:relative;margin:auto}.result-score-circle:before{content:"";position:absolute;inset:9px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #e2e8f0}.result-score-circle span{position:relative;font-size:25px;font-weight:950;color:#0f172a}.result-score-lines{display:grid;gap:8px}.result-score-line{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed #cbd5e1;padding-bottom:7px}.result-score-line:last-child{border-bottom:0;padding-bottom:0}.result-score-line b{color:#334155;font-size:12px}.result-score-line span{font-weight:950;color:#0f172a}.result-attempt-strip{display:flex;gap:8px;flex-wrap:wrap}.result-attempt-chip{border:1px solid #e2e8f0;background:#fff;color:#0f172a;border-radius:999px;padding:8px 10px;font-weight:950;font-size:12px;cursor:pointer}.result-attempt-chip:hover{background:#eff6ff;color:#1e40af}.result-attempt-chip.latest{background:#dbeafe;border-color:#93c5fd;color:#1e40af}.result-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.result-card-actions .btn,.result-card-actions button{border-radius:999px;padding:10px 14px}.result-empty-pro{background:linear-gradient(135deg,#fff,#f8fafc);border:1px dashed #cbd5e1;border-radius:24px;padding:30px;text-align:center;color:#64748b;font-weight:850;line-height:1.8}.result-empty-pro .big{font-size:48px;display:block;margin-bottom:6px}.results-hidden{display:none!important}
+.result-detail-view.pro-detail .result-summary-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.result-detail-view.pro-detail .result-summary-box{border-radius:18px;background:linear-gradient(135deg,#f8fafc,#fff)}.result-detail-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:linear-gradient(135deg,#0f172a,#1e40af);color:#fff;border-radius:22px;padding:18px;margin-bottom:14px}.result-detail-title h3{margin:0;color:#fff}.result-detail-title p{margin:5px 0 0;color:#dbeafe;font-weight:800}.result-review-section h4{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;color:#1e3a8a;border-radius:999px;padding:9px 13px;margin:8px 0 10px}.result-question-card{box-shadow:0 10px 24px rgba(15,23,42,.06)}
+@media(max-width:980px){.results-hero-inner{grid-template-columns:1fr}.results-metric-grid{grid-template-columns:repeat(2,1fr)}.result-score-panel{grid-template-columns:1fr}.result-score-circle{width:118px;height:118px}.portal-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.results-hero-pro{padding:18px;border-radius:24px}.results-hero-pro h2{font-size:24px}.results-metric-grid{grid-template-columns:1fr}.result-section-head-pro{flex-direction:column}.result-cards-grid{grid-template-columns:1fr}.results-filter-bar{align-items:flex-start;flex-direction:column}.results-filter-chips,.results-chip{width:100%}.results-chip{text-align:center}.result-card-actions .btn,.result-card-actions button{width:100%}}
+
+</style>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  get,
+  update
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-lpaskp-NqpuNv91P7m9FNAgLAaRPjcQ",
+  authDomain: "elmoubah-11b42.firebaseapp.com",
+  databaseURL: "https://elmoubah-11b42-default-rtdb.firebaseio.com",
+  projectId: "elmoubah-11b42",
+  storageBucket: "elmoubah-11b42.appspot.com",
+  messagingSenderId: "337813107651",
+  appId: "1:337813107651:web:43d4753427c5588af34376",
+  measurementId: "G-JJFT8K8P9V"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const rtdb = getDatabase(app);
+const FIREBASE_BASE = "deutschKlasseApp/v1";
+
+function cleanEmail(email){ return String(email || "").trim().toLowerCase(); }
+function emailKey(email){ return cleanEmail(email).replaceAll('.', ','); }
+
+function normalizeStudentStatus(value, student = {}){
+  const raw = String(value ?? student.status ?? "").trim().toLowerCase();
+  if(student.active === true || student.approved === true || student.isApproved === true) return "approved";
+  if(["approved","approve","accepted","accept","active","مقبول","قبول","تم القبول","validé","valide","accepted"].includes(raw)) return "approved";
+  if(["rejected","reject","refused","blocked","disabled","مرفوض","رفض","تم الرفض","رفض التسجيل"].includes(raw)) return "rejected";
+  if(["pending","قيد التنفيذ","قيد المعالجة","en attente","waiting","wait","review"].includes(raw)) return "pending";
+  return raw || "pending";
+}
+
+function cleanProfile(profile, user){
+  const now = new Date().toISOString();
+  const email = cleanEmail(profile?.email || user?.email || "");
+  const uid = String(user?.uid || profile?.authUid || "");
+  const id = profile?.id || (uid ? "st_" + uid : "st_" + Date.now().toString(36));
+  const currentStatus = normalizeStudentStatus(profile?.status || "pending", profile || {});
+  return {
+    id,
+    authUid: uid,
+    firebaseUid: uid,
+    uid,
+    name: String(profile?.name || email || "تلميذ جديد").trim(),
+    firstName: String(profile?.firstName || "").trim(),
+    lastName: String(profile?.lastName || "").trim(),
+    email,
+    loginEmail: email,
+    level: String(profile?.level || "A1").trim(),
+    group: String(profile?.group || "").trim(),
+    notes: String(profile?.notes || "طلب تسجيل جديد من صفحة التلميذ").trim(),
+    status: currentStatus || "pending",
+    source: String(profile?.source || "student_self_registration").trim(),
+    createdAt: profile?.createdAt || now,
+    updatedAt: now
+  };
+}
+
+async function loadAppData(){
+  const snap = await get(ref(rtdb, FIREBASE_BASE));
+  return snap.exists() ? snap.val() : {};
+}
+
+function objectToArrayForFirebase(value, idField = "id"){
+  if(Array.isArray(value)) return value.filter(Boolean).map((x,i)=>({...x,[idField]:x?.[idField]||x?.id||String(i)}));
+  if(value && typeof value === "object") return Object.keys(value).map(k=>({...(value[k]||{}),[idField]:(value[k]&&value[k][idField])||k}));
+  return [];
+}
+
+function findStudentInAppData(appData, user){
+  if(!user || !appData) return null;
+  const uid = String(user.uid || "");
+  const email = cleanEmail(user.email || "");
+  const indexId = appData.studentUidIndex && appData.studentUidIndex[uid];
+
+  if(indexId && appData.students && appData.students[indexId]){
+    return {...appData.students[indexId], id: appData.students[indexId].id || indexId};
+  }
+
+  const directId = "st_" + uid;
+  if(appData.students && appData.students[directId]){
+    return {...appData.students[directId], id: appData.students[directId].id || directId};
+  }
+
+  const byEmailId = email && appData.studentEmails && appData.studentEmails[emailKey(email)];
+  if(byEmailId && appData.students && appData.students[byEmailId]){
+    return {...appData.students[byEmailId], id: appData.students[byEmailId].id || byEmailId};
+  }
+
+  return objectToArrayForFirebase(appData.students, "id").find(st => {
+    const uids = [st.authUid, st.firebaseUid, st.uid, st.userId, st.accountUid].map(v=>String(v||""));
+    const emails = [st.email, st.mail, st.loginEmail, st.studentEmail].map(cleanEmail);
+    return uids.includes(uid) || (email && emails.includes(email));
+  }) || null;
+}
+
+function requestForStudent(appData, student, user){
+  if(!appData || !appData.registrationRequests) return null;
+  const uid = String(user?.uid || "");
+  const studentId = String(student?.id || "");
+  const email = cleanEmail(student?.email || user?.email || "");
+  const requests = appData.registrationRequests;
+
+  if(studentId && requests[studentId]) return requests[studentId];
+  if(uid && requests[uid]) return requests[uid];
+
+  return objectToArrayForFirebase(requests, "id").find(req => {
+    return String(req.studentId||"") === studentId ||
+           String(req.authUid||req.uid||"") === uid ||
+           (email && cleanEmail(req.email||req.loginEmail||"") === email);
+  }) || null;
+}
+
+async function loadCurrentStudent(user = auth.currentUser){
+  if(!user) return null;
+  const data = await loadAppData();
+  let student = findStudentInAppData(data, user);
+  if(!student) return null;
+
+  const req = requestForStudent(data, student, user);
+  const normalizedStudentStatus = normalizeStudentStatus(student.status, student);
+  const normalizedRequestStatus = req ? normalizeStudentStatus(req.status, req) : "";
+  const finalStatus = normalizedRequestStatus === "approved" || normalizedRequestStatus === "rejected"
+    ? normalizedRequestStatus
+    : normalizedStudentStatus;
+
+  return {
+    ...student,
+    status: finalStatus || "pending",
+    authUid: student.authUid || student.firebaseUid || student.uid || user.uid,
+    firebaseUid: student.firebaseUid || student.authUid || student.uid || user.uid,
+    uid: student.uid || student.authUid || student.firebaseUid || user.uid,
+    email: cleanEmail(student.email || student.loginEmail || user.email || ""),
+    loginEmail: cleanEmail(student.loginEmail || student.email || user.email || ""),
+    _firebaseAppData: data
+  };
+}
+
+async function savePendingStudentToFirebase(profile, user = auth.currentUser){
+  if(!user) throw new Error("خاص تسجيل الدخول قبل إرسال الطلب");
+  const existing = await loadCurrentStudent(user).catch(()=>null);
+
+  // مهم: إذا الأستاذ قبل أو رفض التلميذ، لا نرجعوش نكتب status=pending فوق القرار ديالو.
+  if(existing && ["approved","rejected"].includes(normalizeStudentStatus(existing.status, existing))){
+    return existing;
+  }
+
+  const baseProfile = existing ? {...existing, ...profile, status: existing.status || "pending"} : profile;
+  const student = cleanProfile(baseProfile, user);
+  if(!student.authUid) throw new Error("UID ديال التلميذ ناقص");
+
+  const updates = {};
+  updates[`${FIREBASE_BASE}/students/${student.id}`] = {
+    ...student,
+    status: normalizeStudentStatus(student.status, student) || "pending",
+    updatedAt: new Date().toISOString()
+  };
+  updates[`${FIREBASE_BASE}/studentUidIndex/${student.authUid}`] = student.id;
+
+  if(student.email){
+    updates[`${FIREBASE_BASE}/studentEmails/${emailKey(student.email)}`] = student.id;
+  }
+
+  updates[`${FIREBASE_BASE}/registrationRequests/${student.id}`] = {
+    studentId: student.id,
+    authUid: student.authUid,
+    email: student.email,
+    name: student.name,
+    level: student.level,
+    group: student.group,
+    status: normalizeStudentStatus(student.status, student) || "pending",
+    createdAt: student.createdAt,
+    updatedAt: student.updatedAt
+  };
+
+  await update(ref(rtdb), updates);
+  return student;
+}
+
+window.DKStudentFirebase = {
+  FIREBASE_BASE,
+  auth,
+  rtdb,
+  loadAppData,
+  loadCurrentStudent,
+  normalizeStudentStatus,
+  savePendingStudentToFirebase,
+  async signIn(email, password){
+    return await signInWithEmailAndPassword(auth, cleanEmail(email), password);
+  },
+  async signUp(profile){
+    const email = cleanEmail(profile?.email);
+    const password = String(profile?.password || "");
+    if(!email) throw new Error("دخل البريد الإلكتروني");
+    if(password.length < 6) throw new Error("كلمة المرور خاصها تكون 6 حروف على الأقل");
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    const student = await savePendingStudentToFirebase({...profile, email}, cred.user);
+    return {cred, student};
+  }
+};
+
+window.studentAuthReady = false;
+window.studentAuthUser = null;
+window.studentFirebaseError = "";
+window.logout = () => signOut(auth).then(()=>{
+  window.studentAuthUser = null;
+  localStorage.removeItem("deutschKlasseCurrentStudentId");
+  if(typeof window.render === "function") window.render(true);
+});
+
+onAuthStateChanged(auth, async user => {
+  window.studentAuthReady = true;
+  window.studentAuthUser = user;
+  window.studentFirebaseError = "";
+  if(typeof window.render === "function") window.render(true);
+});
+</script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="pageTitle">صفحة التلميذ</h1>
+      <p id="pageSubtitle">الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.</p>
+    </div>
+    <div class="actions">
+      <button class="btn-gray" onclick="render()">تحديث</button>
+      <button class="btn-red" onclick="logout()">تسجيل الخروج</button>
+    </div>
+  </div>
+
+  <div id="notSelected" class="card" style="display:none"></div>
+
+  <div id="portal" style="display:none">
+    <div class="hero">
+      <div class="card student-box">
+        <div class="avatar" id="avatar">D</div>
+        <div>
+          <h2 id="studentName">—</h2>
+          <div class="actions">
+            <span class="pill" id="studentLevel">—</span>
+            <span class="pill green" id="studentGroup">—</span>
+          </div>
+          <p class="muted" id="studentNote" style="margin:10px 0 0">مرحبا بك، هنا تلقى غير الحوايج اللي فعّلها الأستاذ ليك.</p>
+        </div>
+      </div>
+      <div class="card stats">
+        <div class="stat"><div class="label">الدروس الظاهرة</div><div class="value" id="stLessons">0</div></div>
+        <div class="stat"><div class="label">التمارين</div><div class="value" id="stExercises">0</div></div>
+        <div class="stat"><div class="label">الامتحانات</div><div class="value" id="stExams">0</div></div>
+        <div class="stat"><div class="label">النتائج</div><div class="value" id="stResults">0</div></div>
+      </div>
+    </div>
+
+    <div class="portal-tabs" role="tablist" aria-label="تنقل صفحة التلميذ">
+      <button id="tabLessons" class="tab-btn active" onclick="openPortalSectionPage('lessons')"><span class="tab-icon">📚</span><span class="tab-text"><b>الدروس</b><span>الدروس اللي فعّلها الأستاذ</span></span></button>
+      <button id="tabExercises" class="tab-btn" onclick="openPortalSectionPage('exercises')"><span class="tab-icon">🧠</span><span class="tab-text"><b>التمارين</b><span>التمارين اللي فعّلها الأستاذ</span></span></button>
+      <button id="tabExams" class="tab-btn" onclick="openPortalSectionPage('exams')"><span class="tab-icon">📝</span><span class="tab-text"><b>الامتحانات</b><span>الامتحانات المعينة ليك</span></span></button>
+      <button id="tabResults" class="tab-btn" onclick="openPortalSectionPage('results')"><span class="tab-icon">📊</span><span class="tab-text"><b>النتائج ديالي</b><span>بالنقطة، التاريخ، والتوقيت</span></span></button>
+      <button id="tabCompleted" class="tab-btn" onclick="openPortalSectionPage('completed')"><span class="tab-icon">✅</span><span class="tab-text"><b>المكتمل</b><span>الدروس والتمارين والامتحانات المكتملة</span></span></button>
+      <button id="tabSettings" class="tab-btn" onclick="openPortalSectionPage('settings')"><span class="tab-icon">⚙️</span><span class="tab-text"><b>الإعدادات</b><span>لغة الواجهة فقط</span></span></button>
+    </div>
+
+    <section id="sectionLessons" class="section active"><div id="lessonsArea"></div></section>
+    <section id="sectionExercises" class="section"><div id="exercisesArea"></div></section>
+    <section id="sectionExams" class="section"><div id="examsArea"></div></section>
+    <section id="sectionResults" class="section"><div id="resultsArea"></div></section>
+    <section id="sectionCompleted" class="section"><div id="completedArea"></div></section>
+    <section id="sectionSettings" class="section"><div class="card"><h3>لغة الواجهة</h3><p class="muted">هذه الإعدادات تغيّر لغة الأزرار والعناوين فقط. لا تغيّر الدروس أو التمارين أو الامتحانات.</p><label style="font-weight:900;display:block;margin-bottom:8px">اختيار لغة الواجهة</label><select id="uiLanguageSelect" onchange="setInterfaceLanguage(this.value)" style="width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 13px;font:inherit;background:white"><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option><option value="de">Deutsch</option></select></div></section>
+  </div>
+</div>
+
+<div id="detailModal" class="modal"><div class="modal-box card" style="max-width:1050px"><h3>تفاصيل النتيجة</h3><div id="resultDetails" class="result-detail-view"></div><button class="btn-gray" onclick="closeModal('detailModal')">إغلاق</button></div></div>
+
+<script>
+/* ===== INTERFACE LANGUAGE ONLY =====
+   This changes the UI labels only. It does NOT change lessons, exercises, exams,
+   levels, assignments, or the content shown/hidden for students.
+*/
+const UI_LANGUAGES=[
+  {code:'ar',label:'العربية'},
+  {code:'fr',label:'Français'},
+  {code:'en',label:'English'},
+  {code:'de',label:'Deutsch'}
+];
+let currentUILanguage=localStorage.getItem('deutschKlasseUILanguage')||'ar';
+
+const UI_TRANSLATIONS={
+  fr:{
+    'لوحة الأستاذ':'Tableau professeur','الرئيسية':'Accueil','التلاميذ':'Élèves','المجموعات':'Groupes','الامتحانات':'Examens','الدروس':'Leçons','التمارين':'Exercices','تعيينات':'Attributions','النتائج':'Résultats','الإعدادات':'Paramètres',
+    'إدارة التلاميذ، الامتحانات، والتقاط النتائج تلقائياً.':'Gestion des élèves, des examens et des résultats automatiquement.','تلميذ':'Élève','مجموعة':'Groupe','امتحان':'Examen','فتح صفحة التلاميذ':'Ouvrir l’espace élèves','تحديث':'Actualiser',
+    'الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Vos leçons, exercices, examens et résultats au même endroit.','الدروس، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Vos leçons, examens et résultats au même endroit.','صفحة التلميذ':'Espace élève','مساحة التلميذ':'Espace élève',
+    'الدروس الظاهرة':'Leçons visibles','التمارين الظاهرة':'Exercices visibles','التمارين':'Exercices','الامتحانات':'Examens','النتائج ديالي':'Mes résultats','الدروس اللي فعّلها الأستاذ':'Leçons activées par le professeur','التمارين اللي فعّلها الأستاذ':'Exercices activés par le professeur','الامتحانات المعينة ليك':'Examens attribués','بالنقطة، التاريخ، والتوقيت':'Note, date et heure',
+    'تسجيل الخروج':'Se déconnecter','لغة الواجهة':'Langue de l’interface','هذه الإعدادات تغيّر لغة الأزرار والعناوين فقط. لا تغيّر الدروس أو التمارين أو الامتحانات.':'Ces paramètres changent seulement la langue des boutons et des titres. Ils ne changent pas les leçons, exercices ou examens.','اختيار لغة الواجهة':'Choisir la langue de l’interface',
+    'نسخ احتياطي':'Sauvegarde','تصدير JSON':'Exporter JSON','استيراد JSON':'Importer JSON','حذف كل شيء':'Tout supprimer','ملاحظة مهمة':'Note importante','بدون سيرفر، النتائج تظهر في نفس المتصفح/الجهاز أو عند رفع الملفات على نفس الاستضافة. للتزامن بين أجهزة مختلفة نحتاج Firebase أو سيرفر.':'Sans serveur, les résultats restent dans le même navigateur/appareil. Pour synchroniser plusieurs appareils, il faut Firebase ou un serveur.',
+    'تسجيلكم قيد التنفيذ':'Votre inscription est en cours','تم إرسال معلوماتكم إلى المؤسسة، وسيتم تفعيل الحساب بعد الموافقة.':'Vos informations ont été envoyées à l’établissement. Le compte sera activé après validation.','معلوماتكم وصلت للمؤسسة وهي تنتظر القبول.':'Vos informations sont arrivées à l’établissement et attendent la validation.','تحديث الحالة':'Actualiser le statut','تعذر تفعيل الحساب':'Activation impossible','تم رفض طلب التسجيل من طرف المؤسسة.':'La demande d’inscription a été refusée par l’établissement.','تم رفض طلب التسجيل.':'La demande d’inscription a été refusée.','يرجى التواصل مع المؤسسة لمراجعة المعلومات.':'Veuillez contacter l’établissement pour vérifier les informations.',
+    'المستوى':'Niveau','الفوج':'Groupe','بدون فوج':'Sans groupe','البريد الإلكتروني':'E-mail','حالة الحساب':'Statut du compte','قيد التنفيذ':'En attente','مقبول':'Accepté','مرفوض':'Refusé','حفظ':'Enregistrer','إلغاء':'Annuler','عرض':'Voir','فتح':'Ouvrir','إخفاء':'Masquer','قبول':'Accepter','رفض':'Refuser','حذف':'Supprimer','تعديل':'Modifier',
+    'ما كاين حتى درس مفعّل ليك دابا. ملي الأستاذ يفعّل درس غادي يبان هنا.':'Aucune leçon activée pour le moment. Elle apparaîtra ici quand le professeur l’activera.','ما كاين حتى تمرين مفعّل ليك دابا. ملي الأستاذ يفعّل تمرين غادي يبان هنا.':'Aucun exercice activé pour le moment. Il apparaîtra ici quand le professeur l’activera.','ما كاين حتى امتحان معيّن ليك دابا.':'Aucun examen attribué pour le moment.','ما كاين حتى نتيجة محفوظة دابا. ملي تكمل امتحان وتحفظ النتيجة غادي تبان هنا بالتاريخ والتوقيت.':'Aucun résultat enregistré pour le moment. Quand vous terminez un examen, le résultat apparaîtra ici avec la date et l’heure.'
+  },
+  en:{
+    'لوحة الأستاذ':'Teacher dashboard','الرئيسية':'Dashboard','التلاميذ':'Students','المجموعات':'Groups','الامتحانات':'Exams','الدروس':'Lessons','التمارين':'Exercises','تعيينات':'Assignments','النتائج':'Results','الإعدادات':'Settings',
+    'إدارة التلاميذ، الامتحانات، والتقاط النتائج تلقائياً.':'Manage students, exams, and results automatically.','تلميذ':'Student','مجموعة':'Group','امتحان':'Exam','فتح صفحة التلاميذ':'Open student page','تحديث':'Refresh',
+    'الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Your lessons, exercises, exams, and results in one place.','الدروس، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Your lessons, exams, and results in one place.','صفحة التلميذ':'Student page','مساحة التلميذ':'Student area',
+    'الدروس الظاهرة':'Visible lessons','التمارين الظاهرة':'Visible exercises','الامتحانات':'Exams','النتائج ديالي':'My results','الدروس اللي فعّلها الأستاذ':'Lessons enabled by the teacher','التمارين اللي فعّلها الأستاذ':'Exercises enabled by the teacher','الامتحانات المعينة ليك':'Assigned exams','بالنقطة، التاريخ، والتوقيت':'Score, date, and time',
+    'تسجيل الخروج':'Log out','لغة الواجهة':'Interface language','هذه الإعدادات تغيّر لغة الأزرار والعناوين فقط. لا تغيّر الدروس أو التمارين أو الامتحانات.':'These settings only change buttons and interface labels. They do not change lessons, exercises, or exams.','اختيار لغة الواجهة':'Choose interface language',
+    'نسخ احتياطي':'Backup','تصدير JSON':'Export JSON','استيراد JSON':'Import JSON','حذف كل شيء':'Delete everything','ملاحظة مهمة':'Important note','بدون سيرفر، النتائج تظهر في نفس المتصفح/الجهاز أو عند رفع الملفات على نفس الاستضافة. للتزامن بين أجهزة مختلفة نحتاج Firebase أو سيرفر.':'Without a server, results appear only in the same browser/device. To sync across devices, Firebase or a server is needed.',
+    'تسجيلكم قيد التنفيذ':'Your registration is pending','تم إرسال معلوماتكم إلى المؤسسة، وسيتم تفعيل الحساب بعد الموافقة.':'Your information was sent to the institution. The account will be activated after approval.','معلوماتكم وصلت للمؤسسة وهي تنتظر القبول.':'Your information reached the institution and is waiting for approval.','تحديث الحالة':'Refresh status','تعذر تفعيل الحساب':'Account activation failed','تم رفض طلب التسجيل من طرف المؤسسة.':'The registration request was rejected by the institution.','تم رفض طلب التسجيل.':'The registration request was rejected.','يرجى التواصل مع المؤسسة لمراجعة المعلومات.':'Please contact the institution to review the information.',
+    'المستوى':'Level','الفوج':'Group','بدون فوج':'No group','البريد الإلكتروني':'Email','حالة الحساب':'Account status','قيد التنفيذ':'Pending','مقبول':'Approved','مرفوض':'Rejected','حفظ':'Save','إلغاء':'Cancel','عرض':'View','فتح':'Open','إخفاء':'Hide','قبول':'Approve','رفض':'Reject','حذف':'Delete','تعديل':'Edit',
+    'ما كاين حتى درس مفعّل ليك دابا. ملي الأستاذ يفعّل درس غادي يبان هنا.':'No lesson is enabled for you yet. When the teacher enables one, it will appear here.','ما كاين حتى تمرين مفعّل ليك دابا. ملي الأستاذ يفعّل تمرين غادي يبان هنا.':'No exercise is enabled for you yet. When the teacher enables one, it will appear here.','ما كاين حتى امتحان معيّن ليك دابا.':'No exam has been assigned to you yet.','ما كاين حتى نتيجة محفوظة دابا. ملي تكمل امتحان وتحفظ النتيجة غادي تبان هنا بالتاريخ والتوقيت.':'No results are saved yet. When you finish an exam, the result will appear here with date and time.'
+  },
+  de:{
+    'لوحة الأستاذ':'Lehrerbereich','الرئيسية':'Startseite','التلاميذ':'Schüler','المجموعات':'Gruppen','الامتحانات':'Prüfungen','الدروس':'Lektionen','التمارين':'Übungen','تعيينات':'Zuweisungen','النتائج':'Ergebnisse','الإعدادات':'Einstellungen',
+    'إدارة التلاميذ، الامتحانات، والتقاط النتائج تلقائياً.':'Schüler, Prüfungen und Ergebnisse automatisch verwalten.','تلميذ':'Schüler','مجموعة':'Gruppe','امتحان':'Prüfung','فتح صفحة التلاميذ':'Schülerseite öffnen','تحديث':'Aktualisieren',
+    'الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Deine Lektionen, Übungen, Prüfungen und Ergebnisse an einem Ort.','الدروس، الامتحانات، والنتائج ديالك فبلاصة وحدة.':'Deine Lektionen, Prüfungen und Ergebnisse an einem Ort.','صفحة التلميذ':'Schülerseite','مساحة التلميذ':'Schülerbereich',
+    'الدروس الظاهرة':'Sichtbare Lektionen','التمارين الظاهرة':'Sichtbare Übungen','الامتحانات':'Prüfungen','النتائج ديالي':'Meine Ergebnisse','الدروس اللي فعّلها الأستاذ':'Vom Lehrer freigeschaltete Lektionen','التمارين اللي فعّلها الأستاذ':'Vom Lehrer freigeschaltete Übungen','الامتحانات المعينة ليك':'Zugewiesene Prüfungen','بالنقطة، التاريخ، والتوقيت':'Punktzahl, Datum und Uhrzeit',
+    'تسجيل الخروج':'Abmelden','لغة الواجهة':'Sprache der Oberfläche','هذه الإعدادات تغيّر لغة الأزرار والعناوين فقط. لا تغيّر الدروس أو التمارين أو الامتحانات.':'Diese Einstellungen ändern nur die Sprache der Schaltflächen und Überschriften. Lektionen, Übungen und Prüfungen bleiben unverändert.','اختيار لغة الواجهة':'Sprache der Oberfläche wählen',
+    'نسخ احتياطي':'Sicherung','تصدير JSON':'JSON exportieren','استيراد JSON':'JSON importieren','حذف كل شيء':'Alles löschen','ملاحظة مهمة':'Wichtiger Hinweis','بدون سيرفر، النتائج تظهر في نفس المتصفح/الجهاز أو عند رفع الملفات على نفس الاستضافة. للتزامن بين أجهزة مختلفة نحتاج Firebase أو سيرفر.':'Ohne Server erscheinen Ergebnisse nur im selben Browser/Gerät. Für Synchronisierung zwischen Geräten braucht man Firebase oder einen Server.',
+    'تسجيلكم قيد التنفيذ':'Ihre Registrierung ist in Bearbeitung','تم إرسال معلوماتكم إلى المؤسسة، وسيتم تفعيل الحساب بعد الموافقة.':'Ihre Daten wurden an die Einrichtung gesendet. Das Konto wird nach der Freigabe aktiviert.','معلوماتكم وصلت للمؤسسة وهي تنتظر القبول.':'Ihre Daten sind bei der Einrichtung angekommen und warten auf Freigabe.','تحديث الحالة':'Status aktualisieren','تعذر تفعيل الحساب':'Konto konnte nicht aktiviert werden','تم رفض طلب التسجيل من طرف المؤسسة.':'Die Registrierung wurde von der Einrichtung abgelehnt.','تم رفض طلب التسجيل.':'Die Registrierung wurde abgelehnt.','يرجى التواصل مع المؤسسة لمراجعة المعلومات.':'Bitte kontaktieren Sie die Einrichtung, um die Daten zu prüfen.',
+    'المستوى':'Niveau','الفوج':'Gruppe','بدون فوج':'Ohne Gruppe','البريد الإلكتروني':'E-Mail','حالة الحساب':'Kontostatus','قيد التنفيذ':'Ausstehend','مقبول':'Akzeptiert','مرفوض':'Abgelehnt','حفظ':'Speichern','إلغاء':'Abbrechen','عرض':'Anzeigen','فتح':'Öffnen','إخفاء':'Ausblenden','قبول':'Akzeptieren','رفض':'Ablehnen','حذف':'Löschen','تعديل':'Bearbeiten',
+    'ما كاين حتى درس مفعّل ليك دابا. ملي الأستاذ يفعّل درس غادي يبان هنا.':'Noch keine Lektion freigeschaltet. Wenn der Lehrer eine Lektion aktiviert, erscheint sie hier.','ما كاين حتى تمرين مفعّل ليك دابا. ملي الأستاذ يفعّل تمرين غادي يبان هنا.':'Noch keine Übung freigeschaltet. Wenn der Lehrer eine Übung aktiviert, erscheint sie hier.','ما كاين حتى امتحان معيّن ليك دابا.':'Noch keine Prüfung zugewiesen.','ما كاين حتى نتيجة محفوظة دابا. ملي تكمل امتحان وتحفظ النتيجة غادي تبان هنا بالتاريخ والتوقيت.':'Noch keine Ergebnisse gespeichert. Nach einer abgeschlossenen Prüfung erscheint das Ergebnis hier mit Datum und Uhrzeit.'
+  }
+};
+
+const __i18nTextOriginal=new WeakMap();
+function uiT(text){
+  let raw=String(text??'');
+  let trimmed=raw.trim();
+  if(!trimmed || currentUILanguage==='ar')return raw;
+  let dict=UI_TRANSLATIONS[currentUILanguage]||{};
+  if(dict[trimmed])return raw.replace(trimmed,dict[trimmed]);
+  if(trimmed.startsWith('المستوى: ')){
+    let label=dict['المستوى']||'Level';
+    return raw.replace(trimmed,label+': '+trimmed.slice('المستوى: '.length));
+  }
+  if(trimmed.startsWith('الفوج: ')){
+    let label=dict['الفوج']||'Group';
+    return raw.replace(trimmed,label+': '+trimmed.slice('الفوج: '.length));
+  }
+  if(trimmed.startsWith('البريد: ')){
+    let label=currentUILanguage==='fr'?'E-mail':currentUILanguage==='de'?'E-Mail':'Email';
+    return raw.replace(trimmed,label+': '+trimmed.slice('البريد: '.length));
+  }
+  return raw;
+}
+function applyInterfaceLanguage(){
+  document.documentElement.lang=currentUILanguage==='ar'?'ar':currentUILanguage;
+  document.documentElement.dir=currentUILanguage==='ar'?'rtl':'ltr';
+  let sel=document.getElementById('uiLanguageSelect');
+  if(sel)sel.value=currentUILanguage;
+  let walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode(node){
+      if(!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+      let p=node.parentElement;
+      if(!p || ['SCRIPT','STYLE','TEXTAREA','INPUT','OPTION','PRE'].includes(p.tagName))return NodeFilter.FILTER_REJECT;
+      if(p.closest('.ltr'))return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let nodes=[];
+  while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(node=>{
+    if(!__i18nTextOriginal.has(node))__i18nTextOriginal.set(node,node.nodeValue);
+    node.nodeValue=uiT(__i18nTextOriginal.get(node));
+  });
+  document.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(el=>{
+    if(!el.dataset.i18nPlaceholderOriginal)el.dataset.i18nPlaceholderOriginal=el.getAttribute('placeholder')||'';
+    el.setAttribute('placeholder',uiT(el.dataset.i18nPlaceholderOriginal));
+  });
+}
+function setInterfaceLanguage(code){
+  if(!UI_LANGUAGES.some(l=>l.code===code))code='ar';
+  currentUILanguage=code;
+  localStorage.setItem('deutschKlasseUILanguage',code);
+  applyInterfaceLanguage();
+}
+function uiLanguageOptions(){
+  return UI_LANGUAGES.map(l=>`<option value="${l.code}" ${currentUILanguage===l.code?'selected':''}>${l.label}</option>`).join('');
+}
+
+const LESSON_LEVELS=['A1','A2','B1','B2','C1'];
+let currentStudent=null,currentStudentId='',currentTab='lessons',currentResults=[];
+let openPartialExamGroups=new Set();
+
+let firebaseDataLoadedAt=0;
+let firebaseDataLoading=false;
+let firebaseLastError='';
+let currentAuthMode='login';
+let studentAuthBusy=false;
+function authCardVisible(){return !!document.getElementById('studentAuthCard');}
+function objectToArray(value, idField='id'){
+  if(Array.isArray(value))return value.filter(Boolean).map((x,i)=>({...x,[idField]:x?.[idField]||x?.id||String(i)}));
+  if(value && typeof value==='object')return Object.keys(value).map(k=>({...(value[k]||{}),[idField]:(value[k]&&value[k][idField])||k}));
+  return [];
+}
+
+function normalizePortalStatus(value, student = {}){
+  let raw = String(value ?? student.status ?? '').trim().toLowerCase();
+  if(student.active === true || student.approved === true || student.isApproved === true) return 'approved';
+  if(['approved','approve','accepted','accept','active','مقبول','قبول','تم القبول','validé','valide'].includes(raw)) return 'approved';
+  if(['rejected','reject','refused','blocked','disabled','مرفوض','رفض','تم الرفض'].includes(raw)) return 'rejected';
+  if(['pending','قيد التنفيذ','قيد المعالجة','en attente','waiting','wait','review'].includes(raw)) return 'pending';
+  return raw || 'pending';
+}
+function requestForPortalStudent(remote, student, user){
+  if(!remote || !remote.registrationRequests || !student) return null;
+  const uid = String(user?.uid || '');
+  const sid = String(student.id || '');
+  const email = norm(student.email || user?.email || '');
+  const requests = remote.registrationRequests;
+  if(sid && requests[sid]) return requests[sid];
+  if(uid && requests[uid]) return requests[uid];
+  return objectToArray(requests,'id').find(req =>
+    String(req.studentId||'') === sid ||
+    String(req.authUid||req.uid||'') === uid ||
+    (email && norm(req.email||req.loginEmail||'') === email)
+  ) || null;
+}
+function applyRegistrationStatus(remote, student, user){
+  if(!student) return student;
+  const req = requestForPortalStudent(remote, student, user);
+  const stStatus = normalizePortalStatus(student.status, student);
+  const reqStatus = req ? normalizePortalStatus(req.status, req) : '';
+  const finalStatus = (reqStatus === 'approved' || reqStatus === 'rejected') ? reqStatus : stStatus;
+  return {...student, status: finalStatus || 'pending'};
+}
+function normalizeRemoteDB(remote){
+  remote=remote||{};
+  let out={...remote};
+  out.studentUidIndex=remote.studentUidIndex||{};
+  out.studentEmails=remote.studentEmails||{};
+  out.registrationRequests=remote.registrationRequests||{};
+  out.files=remote.files||{};
+
+  out.students=objectToArray(remote.students,'id').map(st=>{
+    const fixed=applyRegistrationStatus(remote, st, window.studentAuthUser);
+    return {
+      ...fixed,
+      authUid: fixed.authUid || fixed.firebaseUid || fixed.uid || '',
+      firebaseUid: fixed.firebaseUid || fixed.authUid || fixed.uid || '',
+      uid: fixed.uid || fixed.authUid || fixed.firebaseUid || '',
+      email: norm(fixed.email || fixed.loginEmail || ''),
+      loginEmail: norm(fixed.loginEmail || fixed.email || '')
+    };
+  });
+
+  // إذا كانت صفحة الأستاذ كتبدل حالة registrationRequests فقط، نضيف/نحدث التلميذ محلياً بنفس القرار.
+  objectToArray(remote.registrationRequests,'id').forEach(req=>{
+    const uid=String(req.authUid||req.uid||'');
+    const sid=String(req.studentId||req.id||req.uid||'');
+    const email=norm(req.email||req.loginEmail||'');
+    let i=out.students.findIndex(st=>
+      (sid && st.id===sid) ||
+      (uid && [st.authUid,st.firebaseUid,st.uid].map(String).includes(uid)) ||
+      (email && [st.email,st.loginEmail].map(norm).includes(email))
+    );
+    if(i>=0){
+      out.students[i]={...out.students[i], status: normalizePortalStatus(req.status, req), updatedAt:req.updatedAt||out.students[i].updatedAt};
+    }else if(sid || uid || email){
+      out.students.push({
+        id: sid || ('st_'+uid),
+        name: req.name || email || 'تلميذ جديد',
+        email,
+        loginEmail: email,
+        authUid: uid,
+        firebaseUid: uid,
+        uid,
+        level: req.level || 'A1',
+        group: req.group || '',
+        notes: req.notes || 'طلب تسجيل جديد',
+        status: normalizePortalStatus(req.status, req),
+        createdAt: req.createdAt || '',
+        updatedAt: req.updatedAt || ''
+      });
+    }
+  });
+
+  out.exams=objectToArray(remote.exams,'id');
+  out.assignments=objectToArray(remote.assignments,'id');
+  out.groups=objectToArray(remote.groups,'id').map(g=>({ ...g, studentIds:Array.isArray(g.studentIds)?g.studentIds:objectToArray(g.studentIds,'id').map(x=>x.id) }));
+  out.lessons=remote.lessons||{};
+  out.exercises=remote.exercises||{};
+  out.lessonAccess=remote.lessonAccess||normalizeAccessFromCombinedAccess(remote,'lessons')||{};
+  out.exerciseAccess=remote.exerciseAccess||normalizeAccessFromCombinedAccess(remote,'exercises')||{};
+  return ensureExamCategoriesForPortal(out);
+}
+
+function flattenRemoteResults(resultsObj){
+  if(Array.isArray(resultsObj))return resultsObj;
+  let arr=[];
+  if(resultsObj && typeof resultsObj==='object'){
+    Object.keys(resultsObj).forEach(studentId=>{
+      let bucket=resultsObj[studentId];
+      if(Array.isArray(bucket))bucket.forEach((r,i)=>arr.push({...r,id:r?.id||String(i),studentId:r?.studentId||studentId}));
+      else if(bucket && typeof bucket==='object')Object.keys(bucket).forEach(resultId=>arr.push({...(bucket[resultId]||{}),id:(bucket[resultId]&&bucket[resultId].id)||resultId,studentId:(bucket[resultId]&&bucket[resultId].studentId)||studentId}));
+    });
+  }
+  return arr;
+}
+async function loadDBAsync(force=false){
+  let local=loadDB();
+  if(!window.studentAuthUser || !window.DKStudentFirebase || !window.DKStudentFirebase.loadAppData)return local;
+  if(firebaseDataLoading)return local;
+  if(!force && firebaseDataLoadedAt && Date.now()-firebaseDataLoadedAt<2500)return local;
+  firebaseDataLoading=true;
+  try{
+    let remote=await window.DKStudentFirebase.loadAppData();
+    let normalized=normalizeRemoteDB(remote);
+    localStorage.setItem('deutschKlasseDB',JSON.stringify(normalized));
+    if(remote && remote.results){
+      localStorage.setItem('deutschKlasseResults',JSON.stringify(flattenRemoteResults(remote.results)));
+    }
+    firebaseDataLoadedAt=Date.now();
+    firebaseLastError='';
+    return normalized;
+  }catch(err){
+    firebaseLastError=(err&&err.message)?err.message:String(err||'');
+    console.warn('تعذر تحميل Firebase:',err);
+    return local;
+  }finally{
+    firebaseDataLoading=false;
+  }
+}
+function firebaseErrorBox(){
+  if(!firebaseLastError)return '';
+  return `<div class="notice" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;margin-top:12px">تعذر الاتصال بـ Firebase أو الصلاحيات غير كافية:<br><span class="ltr">${esc(firebaseLastError)}</span></div>`;
+}
+function renderLogin(mode='login', options={}){
+  mode = mode==='register' ? 'register' : 'login';
+  const force = !!(options && options.force);
+  const existing = document.getElementById('studentAuthCard');
+  currentAuthMode = mode;
+  portal.style.display='none';
+  notSelected.style.display='block';
+  pageTitle.textContent='دخول التلميذ';
+  pageSubtitle.textContent='سجل الدخول أو صيفط طلب تسجيل جديد للأستاذ.';
+
+  // مهم: ما نعاودوش نبنيو الفورم كل 4 ثواني، حيث هذا كان كيمسح المعلومات
+  // وكيخلي الزر يرجع لـ "دخول" أثناء الكتابة أو أثناء الاتصال بـ Firebase.
+  if(existing && existing.dataset.mode===mode && !force){
+    applyInterfaceLanguage();
+    return;
+  }
+
+  const isRegister=mode==='register';
+  notSelected.innerHTML=`<div id="studentAuthCard" data-mode="${mode}" class="auth-card card"><h2>${isRegister?'طلب تسجيل جديد':'تسجيل دخول التلميذ'}</h2><p class="muted">سجّل الدخول إذا كان حسابك مفعّل، أو أنشئ طلب تسجيل جديد للمؤسسة.</p><div class="auth-tabs"><button type="button" class="${!isRegister?'active':''}" onclick="renderLogin('login',{force:true})">دخول</button><button type="button" class="${isRegister?'active':''}" onclick="renderLogin('register',{force:true})">تسجيل جديد</button></div><form class="auth-form" onsubmit="handleStudentAuthSubmit(event,'${isRegister?'register':'login'}')"><div class="full"><label>Gmail</label><input id="authEmail" type="email" required class="ltr" autocomplete="email" placeholder="student@gmail.com"></div><div class="full"><label>Mot de passe</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="6 حروف على الأقل"></div>${isRegister?`<div><label>اسم التلميذ</label><input id="authName" required autocomplete="name" placeholder="الاسم الكامل"></div><div><label>المستوى</label><select id="authLevel"><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option></select></div><div class="full"><label>الفوج / ملاحظة اختيارية</label><input id="authGroup" placeholder="مثلاً Groupe A"></div>`:''}<div class="full actions"><button id="authSubmitBtn" class="${isRegister?'btn-green':''}" type="submit">${isRegister?'إرسال طلب التسجيل':'دخول'}</button></div></form><div id="authError" class="auth-error"></div><div class="firebase-sync-note">مهم: طلب التلميذ الجديد غادي يتحفظ في Firebase داخل <span class="ltr">deutschKlasseApp/v1/students</span> باش يبان في صفحة الأستاذ.</div>${firebaseErrorBox()}</div>`;
+  applyInterfaceLanguage();
+}
+async function handleStudentAuthSubmit(ev,mode){
+  ev.preventDefault();
+  if(studentAuthBusy)return;
+  studentAuthBusy=true;
+
+  const errBox=document.getElementById('authError');
+  const submitBtn=document.getElementById('authSubmitBtn') || ev.submitter;
+  const oldSubmitText=submitBtn ? submitBtn.textContent : '';
+  if(errBox){errBox.classList.remove('show');errBox.textContent='';}
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='جاري التحقق...';}
+
+  const email=document.getElementById('authEmail')?.value||'';
+  const password=document.getElementById('authPassword')?.value||'';
+  try{
+    if(!window.DKStudentFirebase)throw new Error('Firebase غير محمل');
+    let result;
+    if(mode==='register'){
+      const profile={email,password,name:document.getElementById('authName')?.value||'',level:document.getElementById('authLevel')?.value||'A1',group:document.getElementById('authGroup')?.value||''};
+      result = await window.DKStudentFirebase.signUp(profile);
+      if(result?.cred?.user)window.studentAuthUser=result.cred.user;
+    }else{
+      result = await window.DKStudentFirebase.signIn(email,password);
+      if(result?.user)window.studentAuthUser=result.user;
+    }
+    firebaseDataLoadedAt=0;
+    await render(true);
+  }catch(err){
+    let msg=(err&&err.message)?err.message:String(err||'');
+    if(msg.includes('auth/email-already-in-use'))msg='هذا Gmail مسجل من قبل. استعمل دخول.';
+    if(msg.includes('auth/invalid-credential')||msg.includes('auth/wrong-password')||msg.includes('auth/user-not-found'))msg='البريد أو كلمة المرور غير صحيحة.';
+    if(msg.includes('auth/network-request-failed'))msg='كاين مشكل في الاتصال بالإنترنت أو Firebase.';
+    if(msg.includes('PERMISSION_DENIED'))msg='Firebase Rules منعات إرسال الطلب. خاص تفتح صلاحية كتابة pending للتلميذ.';
+    if(errBox){errBox.textContent=msg;errBox.classList.add('show');}
+    else alert(msg);
+  }finally{
+    studentAuthBusy=false;
+    if(submitBtn && document.body.contains(submitBtn)){
+      submitBtn.disabled=false;
+      submitBtn.textContent=oldSubmitText || (mode==='register'?'إرسال الطلب للأستاذ':'دخول');
+    }
+  }
+}
+window.handleStudentAuthSubmit=handleStudentAuthSubmit;
+window.renderLogin=renderLogin;
+function params(){return new URLSearchParams(location.search)}
+
+
+function examMasterCatalogForPortal(){return [{"id": "exam_andreas", "name": "Andreas — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/andreas_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_annika", "name": "Annika — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/annika_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_carolina", "name": "Carolina — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/carolina_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_eva", "name": "Eva — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/eva_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_iris1", "name": "Iris1 — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/iris1_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_jennifer", "name": "Jennifer — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/jennifer_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_nadia", "name": "Nadia — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/nadia_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_nicole", "name": "Nicole — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/nicole_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_petra", "name": "Petra — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/petra_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_sonja3", "name": "Sonja3 — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/sonja3_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_sophie", "name": "Sophie — امتحان كامل", "level": "B2", "type": "Komplett", "category": "complete", "path": "exams/sophie_tracked.html", "desc": "امتحان كامل: Lesen + Hören + Schreiben + Sprachbausteine حسب الملف الأصلي."}, {"id": "exam_andreas_lesen", "name": "Andreas — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/andreas_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_andreas_sprachbausteine", "name": "Andreas — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/andreas_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_andreas_hoeren", "name": "Andreas — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/andreas_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_andreas_schreiben", "name": "Andreas — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/andreas_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_annika_lesen", "name": "Annika — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/annika_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_annika_sprachbausteine", "name": "Annika — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/annika_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_annika_hoeren", "name": "Annika — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/annika_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_annika_schreiben", "name": "Annika — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/annika_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_carolina_lesen", "name": "Carolina — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/carolina_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_carolina_sprachbausteine", "name": "Carolina — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/carolina_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_carolina_hoeren", "name": "Carolina — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/carolina_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_carolina_schreiben", "name": "Carolina — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/carolina_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_eva_lesen", "name": "Eva — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/eva_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_eva_sprachbausteine", "name": "Eva — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/eva_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_eva_hoeren", "name": "Eva — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/eva_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_eva_schreiben", "name": "Eva — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/eva_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_iris1_lesen", "name": "Iris1 — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/iris1_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_iris1_sprachbausteine", "name": "Iris1 — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/iris1_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_iris1_hoeren", "name": "Iris1 — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/iris1_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_iris1_schreiben", "name": "Iris1 — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/iris1_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_jennifer_lesen", "name": "Jennifer — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/jennifer_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_jennifer_sprachbausteine", "name": "Jennifer — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/jennifer_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_jennifer_hoeren", "name": "Jennifer — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/jennifer_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_jennifer_schreiben", "name": "Jennifer — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/jennifer_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nadia_lesen", "name": "Nadia — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/nadia_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nadia_sprachbausteine", "name": "Nadia — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/nadia_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nadia_hoeren", "name": "Nadia — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/nadia_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nadia_schreiben", "name": "Nadia — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/nadia_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nicole_lesen", "name": "Nicole — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/nicole_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nicole_sprachbausteine", "name": "Nicole — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/nicole_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nicole_hoeren", "name": "Nicole — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/nicole_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_nicole_schreiben", "name": "Nicole — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/nicole_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_petra_lesen", "name": "Petra — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/petra_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_petra_sprachbausteine", "name": "Petra — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/petra_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_petra_hoeren", "name": "Petra — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/petra_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_petra_schreiben", "name": "Petra — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/petra_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sonja3_lesen", "name": "Sonja3 — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/sonja3_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sonja3_sprachbausteine", "name": "Sonja3 — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/sonja3_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sonja3_hoeren", "name": "Sonja3 — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/sonja3_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sonja3_schreiben", "name": "Sonja3 — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/sonja3_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sophie_lesen", "name": "Sophie — Lesen", "level": "B2", "type": "Lesen", "category": "partial", "path": "exams/partials/sophie_lesen.html", "desc": "امتحان جزئي: Lesen فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sophie_sprachbausteine", "name": "Sophie — Sprachbausteine", "level": "B2", "type": "Sprachbausteine", "category": "partial", "path": "exams/partials/sophie_sprachbausteine.html", "desc": "امتحان جزئي: Sprachbausteine فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sophie_hoeren", "name": "Sophie — Hören", "level": "B2", "type": "Hören", "category": "partial", "path": "exams/partials/sophie_hoeren.html", "desc": "امتحان جزئي: Hören فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_sophie_schreiben", "name": "Sophie — Schreiben", "level": "B2", "type": "Schreiben", "category": "partial", "path": "exams/partials/sophie_schreiben.html", "desc": "امتحان جزئي: Schreiben فقط، مستقل في النتيجة والمحاولة والمدة."}, {"id": "exam_a1_lektion5_freizeit", "name": "A1 Lektion 5 — Freizeit und Hobbys", "level": "A1", "type": "تمارين / Prüfung", "category": "exercise", "path": "exercises/a1/lektion5_freizeit_pruefung.html", "desc": "تمارين Lektion 5 في شكل امتحان مع التصحيح وحفظ النتائج والمحاولات."}];}
+function ensureExamCategoriesForPortal(db){
+  const catalog=examMasterCatalogForPortal();
+  if(!db||typeof db!=='object')db={};
+  if(!Array.isArray(db.exams))db.exams=[];
+  const oldRootPartial=['exams/andreas_lesen.html','exams/andreas_sprachbausteine.html','exams/andreas_hoeren.html','exams/andreas_schreiben.html'];
+  db.exams=db.exams.filter(e=>!oldRootPartial.includes(String(e.path||'')));
+  catalog.forEach(ex=>{let i=db.exams.findIndex(e=>e.id===ex.id);if(i>=0)db.exams[i]={...db.exams[i],...ex};else db.exams.push({...ex});});
+  if(!Array.isArray(db.assignments))db.assignments=[];
+  db.assignments.forEach(a=>{if(a.examId==='exam_andreas_full')a.examId='exam_andreas';});
+  try{localStorage.setItem('deutschKlasseDB',JSON.stringify(db));}catch(e){}
+  return db;
+}
+
+function loadDB(){try{return ensureExamCategoriesForPortal(JSON.parse(localStorage.getItem('deutschKlasseDB')||'{}'))}catch(e){return ensureExamCategoriesForPortal({})}}
+function getResults(){try{return JSON.parse(localStorage.getItem('deutschKlasseResults')||'[]')}catch(e){return[]}}
+function esc(v){return String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s]))}
+function enc(v){return encodeURIComponent(String(v??''))}
+function parseInternalFileId(path){
+  path=String(path||'').trim();
+  if(!path)return '';
+  if(path.startsWith('#internal-file='))return decodeURIComponent(path.split('=')[1]||'');
+  try{
+    let u=new URL(path, location.href);
+    if((u.pathname||'').endsWith('uploaded_file.html'))return u.searchParams.get('id')||'';
+    if((u.hash||'').startsWith('#internal-file='))return decodeURIComponent(u.hash.split('=')[1]||'');
+  }catch(e){}
+  return '';
+}
+function getPortalFileByPath(db,path){
+  const id=parseInternalFileId(path);
+  if(!id)return null;
+  return (db&&db.files&&db.files[id])?{id,...db.files[id]}:null;
+}
+function studentFileButton(db,path,label){
+  if(!path)return '<span class="pill yellow">بدون رابط</span>';
+  const id=parseInternalFileId(path);
+  if(id){
+    const f=getPortalFileByPath(db,path);
+    const warn=f?'':'<div class="missing-file-note">الملف الداخلي ما وصلش من Firebase. خاص الأستاذ يعاود يحفظ/يزامن بعد رفع الملف.</div>';
+    return `<button class="btn content-open-btn" type="button" onclick="openStudentFileFromPath('${enc(path)}')">${esc(label||'فتح الملف')}</button>${warn}`;
+  }
+  return `<button class="btn content-open-btn" type="button" onclick="openStudentExternalPath('${enc(path)}','','${enc(label||'فتح الملف')}')">${esc(label||'فتح الملف')}</button>`;
+}
+function ensureStudentFileModal(){
+  let m=document.getElementById('studentRemoteFileModal');
+  if(m)return m;
+  m=document.createElement('div');
+  m.id='studentRemoteFileModal';
+  m.className='student-file-modal';
+  m.innerHTML=`<div class="student-file-box"><div class="student-file-head"><div><h3 id="studentRemoteFileTitle">ملف التلميذ</h3><p id="studentRemoteFileMeta" class="muted" style="margin:6px 0 0"></p></div><div class="actions"><a id="studentRemoteFileDownload" class="btn small" href="#" download>تحميل</a><button class="btn-gray small" type="button" onclick="closeStudentFileModal()">إغلاق</button></div></div><div id="studentRemoteFileView" class="student-file-view"><div class="empty">جاري فتح الملف...</div></div></div>`;
+  m.addEventListener('click',e=>{if(e.target===m)closeStudentFileModal();});
+  document.body.appendChild(m);
+  return m;
+}
+function closeStudentFileModal(){let m=document.getElementById('studentRemoteFileModal');if(m)m.classList.remove('open')}
+function firstStudentFileString(file,names){
+  for(const n of names){
+    const v=file&&file[n];
+    if(typeof v==='string' && v.trim())return v.trim();
+  }
+  return '';
+}
+function dataUrlToTextStudent(dataUrl){
+  let s=String(dataUrl||''),i=s.indexOf(',');
+  if(i<0)return s;
+  let meta=s.slice(0,i),body=s.slice(i+1);
+  try{
+    if(meta.includes(';base64')){
+      const bin=atob(body);
+      const bytes=new Uint8Array(bin.length);
+      for(let j=0;j<bin.length;j++)bytes[j]=bin.charCodeAt(j);
+      return new TextDecoder('utf-8').decode(bytes);
+    }
+    return decodeURIComponent(body);
+  }catch(e){try{return atob(body)}catch(_){return body}}
+}
+function studentDataUrlFromText(text,mime){
+  const safeMime=mime||'text/html;charset=utf-8';
+  try{return 'data:'+safeMime+','+encodeURIComponent(String(text||''));}
+  catch(e){return 'data:'+safeMime+','+String(text||'');}
+}
+function normalizeStudentBase64ToDataUrl(base64,mime){
+  const b=String(base64||'').trim();
+  if(!b)return '';
+  if(b.startsWith('data:'))return b;
+  return 'data:'+(mime||'application/octet-stream')+';base64,'+b;
+}
+
+function isMetadataOnlyStudentFileText(value){
+  const s=String(value||'').trim();
+  if(!s)return true;
+  const low=s.toLowerCase();
+  const metadataValues=['teacher_upload_realtime_database','teacher_upload_indexeddb','exam_only_bulk_upload','runtime','indexeddb','exam','lesson','exercise'];
+  if(metadataValues.includes(low))return true;
+  if(s.length<80 && !/[<>{}]/.test(s))return true;
+  return false;
+}
+function resolveStudentFileSource(file){
+  const mime=String(file?.mime||file?.contentType||file?.type||'').trim();
+  const direct=firstStudentFileString(file,['downloadURL','downloadUrl','publicUrl','publicURL','url','href','link','fileUrl','fileURL']);
+  const dataUrl=firstStudentFileString(file,['dataUrl','dataURL','data_uri','dataURI','contentDataUrl','contentDataURL']);
+  const text=firstStudentFileString(file,['html','htmlContent','content','text','body','raw','code','fileContent','fileText']);
+  const data=firstStudentFileString(file,['data','fileData','payload','value']);
+  const base64=firstStudentFileString(file,['base64','fileBase64','contentBase64','dataBase64','bodyBase64']);
+  if(dataUrl)return {kind:'dataUrl',url:dataUrl,mime};
+  if(text && !isMetadataOnlyStudentFileText(text))return {kind:'text',text,mime:mime||'text/html;charset=utf-8'};
+  if(data){
+    if(data.startsWith('data:'))return {kind:'dataUrl',url:data,mime};
+    if(/^\s*<!doctype|\s*<html|\s*<script|\s*<style/i.test(data))return {kind:'text',text:data,mime:mime||'text/html;charset=utf-8'};
+    return {kind:'text',text:data,mime:mime||'text/plain;charset=utf-8'};
+  }
+  if(base64)return {kind:'dataUrl',url:normalizeStudentBase64ToDataUrl(base64,mime),mime};
+  if(direct)return {kind:'url',url:direct,mime};
+  return null;
+}
+function appendStudentQueryToUrl(url,query){
+  if(!query)return url;
+  try{
+    let u=new URL(url,location.href);
+    new URLSearchParams(query).forEach((v,k)=>u.searchParams.set(k,v));
+    return u.href;
+  }catch(e){
+    return String(url||'')+(String(url||'').includes('?')?'&':'?')+query;
+  }
+}
+function buildStudentQueryForInternalFile(extraQuery){
+  let q=String(extraQuery||'').replace(/^\?/,'');
+  if(q)return q;
+  const st=currentStudent||{};
+  const params=new URLSearchParams();
+  if(st.id)params.set('studentId',st.id);
+  if(st.name)params.set('studentName',st.name);
+  return params.toString();
+}
+function injectStudentQueryIntoHtml(html,query){
+  const q=String(query||'').replace(/^\?/, '');
+  if(!q)return html;
+  const script=`<script>(function(){
+    try{
+      var q=${JSON.stringify(q)};
+      window.__DK_STUDENT_QUERY=q;
+      var NativeUSP=window.URLSearchParams;
+      window.__DK_NATIVE_URL_SEARCH_PARAMS=NativeUSP;
+      window.URLSearchParams=function(init){
+        try{
+          if((init===undefined||init===null||init===''||init==='?'||init===window.location.search) && q){return new NativeUSP(q);}
+          return new NativeUSP(init);
+        }catch(e){return new NativeUSP(init);}
+      };
+      window.URLSearchParams.prototype=NativeUSP.prototype;
+      window.__DK_STUDENT_PARAMS=Object.fromEntries(new NativeUSP(q));
+      if(q){
+        try{history.replaceState(null,'','?'+q);}catch(_){
+          try{history.replaceState(null,'',location.pathname+'?'+q);}catch(__){}
+        }
+      }
+    }catch(e){}
+  })();<\/script>`;
+  if(/<head[^>]*>/i.test(html))return html.replace(/<head[^>]*>/i,m=>m+script);
+  return script+html;
+}
+function studentFullPageUrl(query){
+  const q=String(query||'').replace(/^\?/, '');
+  try{
+    const base=location.href.split('#')[0].split('?')[0];
+    return q?base+'?'+q:base;
+  }catch(e){return 'about:blank';}
+}
+function ensureInlineContentPage(){
+  let page=document.getElementById('studentInlineContentPage');
+  if(page)return page;
+  page=document.createElement('div');
+  page.id='studentInlineContentPage';
+  page.className='inline-content-page';
+  page.innerHTML=`<div class="inline-content-head"><div class="inline-content-title"><div class="inline-content-icon" id="inlineContentIcon">📄</div><div><h2 id="inlineContentTitle">المحتوى</h2><p id="inlineContentSubtitle">يفتح هنا داخل نفس الصفحة الرئيسية بشكل كامل.</p></div></div><div class="inline-content-actions"><button class="btn-gray" type="button" onclick="closeInlineContentPage()">رجوع للقسم</button><button class="btn" type="button" onclick="refreshInlineContentPage()">تحديث المحتوى</button><a id="inlineContentDownload" class="btn small" href="#" download style="display:none">تحميل</a></div></div><div id="inlineContentView" class="inline-content-view"><div class="inline-content-message">جاري فتح المحتوى...</div></div>`;
+  const wrap=document.querySelector('.wrap')||document.body;
+  wrap.appendChild(page);
+  return page;
+}
+let __lastInlineContent=null;
+function closeInlineContentPage(){
+  const page=document.getElementById('studentInlineContentPage');
+  if(page){
+    page.style.display='none';
+    const view=document.getElementById('inlineContentView');
+    if(view)view.innerHTML='<div class="inline-content-message">جاري فتح المحتوى...</div>';
+  }
+  document.body.classList.remove('dk-inline-content-open');
+  document.documentElement.style.overflow='';
+  document.body.style.overflow='';
+  portal.style.display='block';
+  notSelected.style.display='none';
+  const tab=(page&&page.dataset.returnTab)||currentTab||params().get('tab')||'lessons';
+  pageTitle.textContent='مساحة التلميذ';
+  pageSubtitle.textContent='الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.';
+  showTab(DK_PORTAL_TABS.includes(tab)?tab:'lessons');
+  applyPortalSectionMode(DK_PORTAL_TABS.includes(tab)?tab:'lessons');
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),0);
+}
+function refreshInlineContentPage(){
+  if(!__lastInlineContent)return;
+  openInlineContentPage(__lastInlineContent);
+}
+function openInlineContentPage(options){
+  const page=ensureInlineContentPage();
+  const view=document.getElementById('inlineContentView');
+  const title=document.getElementById('inlineContentTitle');
+  const subtitle=document.getElementById('inlineContentSubtitle');
+  const icon=document.getElementById('inlineContentIcon');
+  const download=document.getElementById('inlineContentDownload');
+  const opt={...(options||{})};
+  __lastInlineContent=opt;
+  page.dataset.returnTab=currentTab||params().get('tab')||'lessons';
+  page.style.display='block';
+  portal.style.display='none';
+  notSelected.style.display='none';
+  document.body.classList.remove('dk-section-page');
+  document.body.classList.add('dk-inline-content-open');
+  document.documentElement.style.overflow='hidden';
+  document.body.style.overflow='hidden';
+  const ttl=opt.title||opt.name||'المحتوى';
+  title.textContent=ttl;
+  subtitle.textContent=opt.subtitle||'يفتح هنا داخل نفس الصفحة الرئيسية بشكل كامل.';
+  icon.textContent=opt.icon||'📄';
+  pageTitle.textContent=ttl;
+  pageSubtitle.textContent=opt.subtitle||'المحتوى مفتوح داخل نفس الصفحة.';
+  if(download){
+    if(opt.downloadUrl){download.href=opt.downloadUrl;download.download=opt.name||ttl;download.style.display='inline-flex';}
+    else{download.removeAttribute('href');download.style.display='none';}
+  }
+  if(opt.html!=null){
+    view.innerHTML='<iframe id="inlineHtmlContentFrame" title="HTML content" allow="fullscreen; clipboard-read; clipboard-write"></iframe>';
+    const frame=document.getElementById('inlineHtmlContentFrame');
+    frame.srcdoc=String(opt.html||'');
+  }else if(opt.url){
+    if(opt.kind==='image'){
+      view.innerHTML=`<div style="padding:18px;background:#f8fafc;min-height:100%"><img alt="${esc(ttl)}" src="${esc(opt.url)}"></div>`;
+    }else{
+      view.innerHTML=`<iframe id="inlineUrlContentFrame" title="${esc(ttl)}" src="${esc(opt.url)}" allow="fullscreen; clipboard-read; clipboard-write"></iframe>`;
+    }
+  }else{
+    view.innerHTML='<div class="inline-content-message">تعذر فتح المحتوى.</div>';
+  }
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),0);
+  applyInterfaceLanguage();
+  return true;
+}
+function openFullStudentHtmlPage(html,query,title){
+  return openInlineContentPage({title:title||'DeutschKlasse',subtitle:'صفحة كاملة داخل نفس مساحة التلميذ.',html,icon:'📄'});
+}
+function openFullStudentViewer(url,name,mime){
+  const lowerMime=String(mime||'').toLowerCase();
+  let kind='iframe';
+  if(lowerMime.startsWith('image/')||/\.(png|jpe?g|webp|gif|svg)$/i.test(name||''))kind='image';
+  return openInlineContentPage({title:name||'ملف',subtitle:'عرض كامل داخل نفس الصفحة الرئيسية.',url,downloadUrl:url,name:name||'file',kind,icon:kind==='image'?'🖼️':'📄'});
+}
+function openStudentExternalPath(encodedPath,encodedQuery,encodedTitle){
+  const path=decodeURIComponent(encodedPath||'');
+  const extraQuery=decodeURIComponent(encodedQuery||'');
+  const title=decodeURIComponent(encodedTitle||'')||'المحتوى';
+  const query=buildStudentQueryForInternalFile(extraQuery);
+  const url=appendStudentQueryToUrl(path,query);
+  return openInlineContentPage({title,subtitle:'يفتح هنا داخل نفس الصفحة الرئيسية بشكل كامل.',url,downloadUrl:url,name:title,icon:'🔗'});
+}
+function openStudentFileFromPath(encodedPath,encodedQuery){
+  const path=decodeURIComponent(encodedPath||'');
+  const extraQuery=decodeURIComponent(encodedQuery||'');
+  const query=buildStudentQueryForInternalFile(extraQuery);
+  const db=window.__currentPortalDB||loadDB();
+  const file=getPortalFileByPath(db,path);
+  if(!file){alert('هذا الملف الداخلي ما وصلش من Firebase. عاود دير مزامنة من صفحة الأستاذ أو ارفع الملف من جديد.');return;}
+  const source=resolveStudentFileSource(file);
+  const name=file.name||file.filename||file.id||'file';
+  const mime=String(file.mime||file.contentType||file.type||source?.mime||'').toLowerCase();
+  if(!source){
+    alert('الملف موجود في Firebase ولكن المحتوى ديالو ناقص. خاص الأستاذ يعاود رفع ملف HTML الحقيقي من زر التحميل داخل التايل، ثم يعينو للتلميذ أو للمجموعة.');
+    return;
+  }
+  let url=source.url||'';
+  if(source.kind==='url'){
+    openInlineContentPage({title:name,subtitle:'يفتح هنا داخل نفس الصفحة الرئيسية بشكل كامل.',url:appendStudentQueryToUrl(url,query),downloadUrl:appendStudentQueryToUrl(url,query),name,icon:'🔗'});
+    return;
+  }
+  if(source.kind==='text')url=studentDataUrlFromText(source.text,source.mime||mime||'text/html;charset=utf-8');
+  const isHtml=mime.includes('html')||String(name).toLowerCase().endsWith('.html')||String(name).toLowerCase().endsWith('.htm')||/^\s*<!doctype|^\s*<html/i.test(source.text||dataUrlToTextStudent(url));
+  if(isHtml){
+    let html=source.kind==='text'?source.text:dataUrlToTextStudent(url);
+    html=injectStudentQueryIntoHtml(html,query);
+    openFullStudentHtmlPage(html,query,name);
+    return;
+  }
+  openFullStudentViewer(url,name,mime);
+}
+function normalizeAccessFromCombinedAccess(remote,kind){
+  const out={};
+  const bucket=remote&&remote.access?remote.access:{};
+  Object.entries(bucket||{}).forEach(([studentId,acc])=>{
+    const src=(acc&&acc[kind])||{};
+    Object.entries(src).forEach(([key,val])=>{
+      if(!val)return;
+      const parts=String(key).split('_');
+      const level=parts[0]||'', n=parts.slice(1).join('_');
+      if(!level||!n)return;
+      if(!out[studentId])out[studentId]={};
+      if(!out[studentId][level])out[studentId][level]={};
+      out[studentId][level][n]=true;
+    });
+  });
+  return out;
+}
+
+function baseJoin(path,query){let joiner=String(path||'').includes('?')?'&':'?';return (path||'#')+joiner+query}
+function lessonData(db,level,n){return db.lessons?.[level]?.[String(n)]||db.lessons?.[level]?.[n]||{title:`Lesson ${n}`,path:'',desc:''}}
+function isAllowed(db,studentId,level,n){return !!db.lessonAccess?.[studentId]?.[level]?.[String(n)]||!!db.lessonAccess?.[studentId]?.[level]?.[n]}
+function visibleLessons(db,studentId){let out=[];LESSON_LEVELS.forEach(level=>{for(let n=1;n<=12;n++){if(isAllowed(db,studentId,level,n)){let l=lessonData(db,level,n);out.push({level,n,title:l.title||`Lesson ${n}`,path:l.path||'',desc:l.desc||''})}}});return out}
+function exerciseData(db,level,n){return db.exercises?.[level]?.[String(n)]||db.exercises?.[level]?.[n]||{title:`تمرين ${n}`,path:'',desc:''}}
+function isExerciseAllowed(db,studentId,level,n){return !!db.exerciseAccess?.[studentId]?.[level]?.[String(n)]||!!db.exerciseAccess?.[studentId]?.[level]?.[n]}
+function visibleExercises(db,studentId){let out=[];LESSON_LEVELS.forEach(level=>{for(let n=1;n<=12;n++){if(isExerciseAllowed(db,studentId,level,n)){let ex=exerciseData(db,level,n);out.push({level,n,title:ex.title||`تمرين ${n}`,path:ex.path||'',desc:ex.desc||''})}}});return out}
+function assignmentsForStudent(db,studentId){return (db.assignments||[]).filter(a=>a.studentId===studentId).map(a=>({assignment:a,exam:(db.exams||[]).find(e=>e.id===a.examId)}))}
+function resultsForStudent(student){let all=getResults();return all.filter(r=>r.studentId===student.id || (!r.studentId && r.studentName && String(r.studentName).trim()===String(student.name).trim())).sort((a,b)=>new Date(b.savedAt||b.finishedAt||b.submittedAt||0)-new Date(a.savedAt||a.finishedAt||a.submittedAt||0))}
+function fmtDate(v){if(!v)return 'غير مسجل';let d=new Date(v);if(isNaN(d))return String(v);return d.toLocaleString('ar-MA',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+function fmtDuration(value){if(value==null||value==='')return '';if(typeof value==='string' && /[a-zA-Zأ-ي:]/.test(value))return value;let n=Number(value);if(!Number.isFinite(n))return String(value);if(n>100000)n=Math.round(n/1000);n=Math.max(0,Math.round(n));let h=Math.floor(n/3600),m=Math.floor((n%3600)/60),s=n%60;return (h? h+'س ':'')+(m? m+'د ':'')+s+'ث'}
+function resultMoment(r){return r.submittedAt||r.savedAt||r.finishedAt||r.date||r.createdAt||''}
+function resultTiming(r){let moment=resultMoment(r);let duration=r.durationText||r.duration||r.timeSpent||r.elapsedTime||r.elapsedSeconds||r.durationSeconds||r.timer||'';duration=fmtDuration(duration);return {date:fmtDate(moment),duration:duration||'غير مسجلة'}}
+function examURL(exam,assignment,student){let query=`studentId=${encodeURIComponent(student.id)}&studentName=${encodeURIComponent(student.name||'')}&assignmentId=${encodeURIComponent(assignment.id)}&examId=${encodeURIComponent(exam?.id||'')}&examName=${encodeURIComponent(exam?.name||'')}`;return exam?.path?baseJoin(exam.path,query):'#'}
+function exerciseURL(ex){let st=currentStudent||{id:currentStudentId||'',name:''};let examId='exercise_'+String(ex.level||'').toLowerCase()+'_'+String(ex.n||'');let examName=ex.title||('تمرين '+(ex.n||''));let query=`studentId=${encodeURIComponent(st.id||'')}&studentName=${encodeURIComponent(st.name||'')}&assignmentId=&examId=${encodeURIComponent(examId)}&examName=${encodeURIComponent(examName)}`;return ex?.path?baseJoin(ex.path,query):'#'}
+function statusPill(s){let cls=s==='مكتمل'?'green':s==='قيد الإنجاز'?'yellow':'';return `<span class="pill ${cls}">${esc(s||'جديد')}</span>`}
+function showTab(tab){currentTab=tab;['lessons','exercises','exams','results','completed','settings'].forEach(t=>{document.getElementById('tab'+cap(t)).classList.toggle('active',t===tab);document.getElementById('section'+cap(t)).classList.toggle('active',t===tab)});let p=new URLSearchParams(location.search);p.set('tab',tab);history.replaceState(null,'',location.pathname+'?'+p.toString())}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+const DK_PORTAL_TABS=['lessons','exercises','exams','results','completed','settings'];
+const DK_PORTAL_TAB_META={
+  lessons:{icon:'📚',title:'الدروس',subtitle:'صفحة كاملة داخل نفس المساحة الرئيسية للدروس التي فعّلها الأستاذ.'},
+  exercises:{icon:'🧠',title:'التمارين',subtitle:'صفحة كاملة داخل نفس المساحة الرئيسية للتمارين التي فعّلها الأستاذ.'},
+  exams:{icon:'📝',title:'الامتحانات',subtitle:'صفحة كاملة داخل نفس المساحة الرئيسية للامتحانات المعينة للتلميذ.'},
+  results:{icon:'📊',title:'النتائج ديالي',subtitle:'صفحة كاملة داخل نفس المساحة الرئيسية للنتائج والمحاولات والتفاصيل.'},
+  completed:{icon:'✅',title:'المكتمل',subtitle:'فضاء خاص بالعناصر التي علّمها التلميذ كمكتملة، مصنفة إلى دروس وتمارين وامتحانات.'},
+  settings:{icon:'⚙️',title:'الإعدادات',subtitle:'صفحة كاملة داخل نفس المساحة الرئيسية لإعدادات الواجهة.'}
+};
+function isFullSectionPage(){let p=params();return p.get('full')==='1'||p.get('sectionPage')==='1'}
+function portalSectionUrl(tab){let p=params();p.set('tab',DK_PORTAL_TABS.includes(tab)?tab:'lessons');p.set('full','1');return location.pathname+'?'+p.toString()}
+function mainPortalUrl(){let p=params();p.delete('full');p.delete('sectionPage');return location.pathname+(p.toString()?('?'+p.toString()):'')}
+function openPortalSectionPage(tab){
+  tab=DK_PORTAL_TABS.includes(tab)?tab:'lessons';
+  const url=portalSectionUrl(tab);
+  history.pushState({dkSection:tab},'',url);
+  showTab(tab);
+  applyPortalSectionMode(tab);
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),0);
+  return false;
+}
+function ensureSectionPageHead(){
+  let head=document.getElementById('sectionPageHead');
+  if(!head && document.getElementById('portal')){
+    head=document.createElement('div');
+    head.id='sectionPageHead';
+    head.className='section-page-head';
+    const first=document.getElementById('sectionLessons');
+    portal.insertBefore(head,first||portal.firstChild);
+  }
+  return head;
+}
+function returnToMainPortal(){
+  const url=mainPortalUrl();
+  history.pushState({dkMain:true},'',url);
+  document.body.classList.remove('dk-section-page');
+  const head=document.getElementById('sectionPageHead');
+  if(head){head.style.display='none';head.innerHTML='';}
+  pageTitle.textContent='مساحة التلميذ';
+  pageSubtitle.textContent='الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.';
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),0);
+  return false;
+}
+function applyPortalSectionMode(tab){
+  tab=DK_PORTAL_TABS.includes(tab)?tab:'lessons';
+  const head=ensureSectionPageHead();
+  if(isFullSectionPage()){
+    const meta=DK_PORTAL_TAB_META[tab]||DK_PORTAL_TAB_META.lessons;
+    document.body.classList.add('dk-section-page');
+    pageTitle.textContent=meta.title;
+    pageSubtitle.textContent=meta.subtitle;
+    if(head){
+      head.style.display='flex';
+      head.innerHTML=`<div class="section-page-title"><div class="section-page-icon">${esc(meta.icon)}</div><div><h2>${esc(meta.title)}</h2><p>${esc(meta.subtitle)}</p></div></div><div class="section-page-actions"><button class="btn-gray" type="button" onclick="returnToMainPortal()">رجوع للمساحة الرئيسية</button><button class="btn" type="button" onclick="render(true)">تحديث المحتوى</button></div>`;
+    }
+  }else{
+    document.body.classList.remove('dk-section-page');
+    if(head){head.style.display='none';head.innerHTML='';}
+  }
+}
+function renderLoading(){portal.style.display='none';notSelected.style.display='block';pageTitle.textContent='جاري التحقق من الحساب';pageSubtitle.textContent='';notSelected.innerHTML='<div class="empty">المرجو الانتظار، يتم التحقق من تسجيل الدخول...</div>';applyInterfaceLanguage()}
+function norm(v){return String(v??'').trim().toLowerCase()}
+function studentMatchesUser(student,user){
+  if(!student||!user)return false;
+  let uid=String(user.uid||'');
+  let email=norm(user.email);
+  let uidFields=[student.authUid,student.firebaseUid,student.uid,student.userId,student.accountUid,student.id].map(v=>String(v??''));
+  let emailFields=[student.email,student.mail,student.loginEmail,student.studentEmail].map(norm);
+  return uidFields.includes(uid)||emailFields.includes(email);
+}
+function findStudentForUser(db,user){
+  const list=(db.students||[]);
+  if(!user)return null;
+  const uid=String(user.uid||'');
+  const indexedId=db.studentUidIndex?.[uid] || localStorage.getItem('deutschKlasseCurrentStudentId') || '';
+  if(indexedId){
+    const byId=list.find(s=>s.id===indexedId);
+    if(byId)return byId;
+  }
+  const directId='st_'+uid;
+  const direct=list.find(s=>s.id===directId);
+  if(direct)return direct;
+  return list.find(s=>studentMatchesUser(s,user))||null;
+}
+function saveDB(db){localStorage.setItem('deutschKlasseDB',JSON.stringify(db))}
+function ensureStudentAccessShape(db,studentId){if(!db.lessonAccess)db.lessonAccess={};if(!db.lessonAccess[studentId])db.lessonAccess[studentId]={};LESSON_LEVELS.forEach(level=>{if(!db.lessonAccess[studentId][level])db.lessonAccess[studentId][level]={}})}
+async function createPendingStudentFromAuth(db,user){
+  if(!db.students)db.students=[];
+  let email=norm(user?.email||'');
+
+  // نحاول نجيب قرار Firebase مباشرة قبل ما نصايبو pending محلي جديد.
+  try{
+    if(window.DKStudentFirebase?.loadCurrentStudent){
+      let remoteStudent=await window.DKStudentFirebase.loadCurrentStudent(user);
+      if(remoteStudent){
+        let fixed={...remoteStudent, status:normalizePortalStatus(remoteStudent.status,remoteStudent)};
+        let i=db.students.findIndex(s=>s.id===fixed.id || studentMatchesUser(s,user));
+        i>=0?db.students[i]=fixed:db.students.unshift(fixed);
+        localStorage.setItem('deutschKlasseCurrentStudentId', fixed.id);
+        saveDB(db);
+        return fixed;
+      }
+    }
+  }catch(err){
+    firebaseLastError=(err&&err.message)?err.message:String(err||'');
+    console.warn('تعذر جلب حالة التلميذ من Firebase:',err);
+  }
+
+  let existing=findStudentForUser(db,user);
+  if(existing)return existing;
+
+  let now=new Date().toISOString();
+  let student={
+    id:'st_'+(user?.uid||Date.now().toString(36)+Math.random().toString(36).slice(2,8)),
+    name:email||'تلميذ جديد',
+    firstName:'',
+    lastName:'',
+    email,
+    loginEmail:email,
+    authUid:user?.uid||'',
+    firebaseUid:user?.uid||'',
+    uid:user?.uid||'',
+    level:'A1',
+    group:'',
+    notes:'طلب تسجيل قيد المعالجة',
+    status:'pending',
+    source:'auto_pending_from_portal',
+    createdAt:now,
+    updatedAt:now
+  };
+  db.students.unshift(student);
+  ensureStudentAccessShape(db,student.id);
+  localStorage.setItem('deutschKlasseCurrentStudentId', student.id);
+  saveDB(db);
+  try{
+    if(window.DKStudentFirebase?.savePendingStudentToFirebase){
+      let saved=await window.DKStudentFirebase.savePendingStudentToFirebase(student,user);
+      if(saved && saved.id){
+        student={...student,...saved,status:normalizePortalStatus(saved.status,saved)};
+        let i=db.students.findIndex(s=>s.id===student.id || studentMatchesUser(s,user));
+        i>=0?db.students[i]=student:db.students.unshift(student);
+        localStorage.setItem('deutschKlasseCurrentStudentId', student.id);
+        saveDB(db);
+      }
+      firebaseDataLoadedAt=0;
+    }
+  }catch(err){
+    firebaseLastError=(err&&err.message)?err.message:String(err||'');
+    console.warn('تعذر إرسال طلب التلميذ إلى Firebase:',err);
+  }
+  return student;
+}
+function statusText(status){let s=normalizePortalStatus(status);return s==='approved'?'مقبول':s==='rejected'?'مرفوض':'قيد التنفيذ'}
+function renderPending(student,user){
+  portal.style.display='none';
+  notSelected.style.display='block';
+  pageTitle.textContent='تسجيلكم قيد التنفيذ';
+  pageSubtitle.textContent='تم إرسال معلوماتكم إلى المؤسسة، وسيتم تفعيل الحساب بعد الموافقة.';
+  let extra=firebaseLastError?`<div class="notice" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;margin-top:12px">ملاحظة تقنية:<br><span class="ltr">${esc(firebaseLastError)}</span></div>`:'';
+  notSelected.innerHTML=`<div class="empty" style="font-size:16px;line-height:1.9"><div style="font-size:52px;margin-bottom:10px">⏳</div><b>تسجيلكم قيد التنفيذ</b><br>معلوماتكم وصلت للمؤسسة وهي تنتظر القبول.<br><br><span class="pill yellow">الحالة: ${esc(statusText(student?.status||'pending'))}</span><br><br><div class="ltr" style="display:inline-block;margin-top:10px">${esc(user?.email||student?.email||'')}</div><br><br><button class="btn-gray" onclick="render(true)">تحديث الحالة من Firebase</button> <button class="btn-red" onclick="logout()">تسجيل الخروج</button>${extra}</div>`;
+  applyInterfaceLanguage();
+}
+function renderRejected(student,user){portal.style.display='none';notSelected.style.display='block';pageTitle.textContent='تعذر تفعيل الحساب';pageSubtitle.textContent='تم رفض طلب التسجيل من طرف المؤسسة.';notSelected.innerHTML=`<div class="empty" style="font-size:16px;line-height:1.9"><div style="font-size:52px;margin-bottom:10px">🚫</div><b>تم رفض طلب التسجيل.</b><br>يرجى التواصل مع المؤسسة لمراجعة المعلومات.<br><br><span class="pill red">الحالة: مرفوض</span><br><br><div class="ltr" style="display:inline-block;margin-top:10px">${esc(user?.email||student?.email||'')}</div><br><br><button class="btn-red" onclick="logout()">تسجيل الخروج</button></div>`;applyInterfaceLanguage()}
+async function renderNoStudent(db,user){let student=await createPendingStudentFromAuth(db,user);renderPending(student,user)}
+
+/* ===== STUDENT ITEM PROGRESS: OPEN / COMPLETED / DELETE ===== */
+function studentProgressKey(){return 'deutschKlasseStudentProgress_'+String(currentStudentId||currentStudent?.id||'guest')}
+function loadStudentProgress(){try{let x=JSON.parse(localStorage.getItem(studentProgressKey())||'{}');if(!x.completed)x.completed={};if(!x.hidden)x.hidden={};return x}catch(e){return {completed:{},hidden:{}}}}
+function saveStudentProgress(progress){localStorage.setItem(studentProgressKey(),JSON.stringify(progress||{completed:{},hidden:{}}))}
+function itemId(kind,parts){return [kind].concat(parts||[]).map(v=>String(v??'').replaceAll('|','_')).join('|')}
+function itemKindLabel(kind){return kind==='lesson'?'درس':kind==='exercise'?'تمرين':kind==='exam'?'امتحان':'عنصر'}
+function itemKindIcon(kind){return kind==='lesson'?'📚':kind==='exercise'?'🧠':kind==='exam'?'📝':'📄'}
+function isStudentItemHidden(id){return !!loadStudentProgress().hidden[id]}
+function isStudentItemCompleted(id){return !!loadStudentProgress().completed[id]}
+function encodeItemRecord(record){return enc(JSON.stringify(record||{}))}
+function decodeItemRecord(encoded){try{return JSON.parse(decodeURIComponent(encoded||''))}catch(e){return null}}
+function openStudentItem(encodedRecord){let r=decodeItemRecord(encodedRecord);if(!r||!r.path){alert('هذا العنصر ما فيهش رابط محتوى.');return false}if(parseInternalFileId(r.path))openStudentFileFromPath(enc(r.path),enc(r.query||''));else openStudentExternalPath(enc(r.path),enc(r.query||''),enc(r.title||'المحتوى'));return false}
+function markStudentItemCompleted(encodedRecord){let r=decodeItemRecord(encodedRecord);if(!r||!r.id)return false;let p=loadStudentProgress();p.completed[r.id]={...r,completedAt:new Date().toISOString()};delete p.hidden[r.id];saveStudentProgress(p);render(true);if(typeof currentTab==='string'&&currentTab==='completed')showTab('completed');return false}
+let pendingDeleteStudentItem=null;
+let lastDeletedStudentItem=null;
+let dkToastTimer=null;
+function ensureStudentDeleteModal(){
+  let modal=document.getElementById('dkDeleteModal');
+  if(modal)return modal;
+  modal=document.createElement('div');
+  modal.id='dkDeleteModal';
+  modal.className='dk-delete-overlay';
+  modal.innerHTML=`<div class="dk-delete-dialog" role="dialog" aria-modal="true" aria-labelledby="dkDeleteTitle">
+    <div class="dk-delete-head">
+      <div class="dk-delete-icon">🗑️</div>
+      <div><h3 id="dkDeleteTitle" class="dk-delete-title">تأكيد الحذف</h3><p class="dk-delete-subtitle">هذا الإجراء غير نهائي. يمكن إرجاع العنصر من نفس الجهاز، وإذا عيّنه الأستاذ من جديد سيظهر مرة أخرى.</p></div>
+    </div>
+    <div class="dk-delete-body">
+      <div class="dk-delete-item"><b id="dkDeleteItemTitle">—</b><span id="dkDeleteItemMeta">—</span></div>
+      <div class="dk-delete-warning">سيتم إخفاء هذا العنصر من فضاء التلميذ وحذفه من قائمة المكتمل إذا كان محفوظاً هناك.</div>
+    </div>
+    <div class="dk-delete-actions">
+      <button type="button" class="dk-delete-cancel" onclick="closeStudentDeleteModal()">إلغاء</button>
+      <button type="button" class="dk-delete-confirm" onclick="confirmStudentDeleteItem()">نعم، احذف</button>
+    </div>
+  </div>`;
+  modal.addEventListener('click',e=>{if(e.target===modal)closeStudentDeleteModal();});
+  document.body.appendChild(modal);
+  return modal;
+}
+function requestDeleteStudentItem(encodedRecord){
+  let r=decodeItemRecord(encodedRecord);
+  if(!r||!r.id)return false;
+  pendingDeleteStudentItem=r;
+  let modal=ensureStudentDeleteModal();
+  let title=document.getElementById('dkDeleteItemTitle');
+  let meta=document.getElementById('dkDeleteItemMeta');
+  if(title)title.textContent=r.title||itemKindLabel(r.kind)||'عنصر';
+  if(meta)meta.textContent=[itemKindLabel(r.kind),r.subtitle].filter(Boolean).join(' · ');
+  modal.classList.add('open');
+  setTimeout(()=>{let btn=modal.querySelector('.dk-delete-cancel'); if(btn)btn.focus();},30);
+  return false;
+}
+function closeStudentDeleteModal(){let modal=document.getElementById('dkDeleteModal');if(modal)modal.classList.remove('open');pendingDeleteStudentItem=null;return false}
+function showStudentToast(title,subtitle,undoId){
+  let toast=document.getElementById('dkStudentToast');
+  if(!toast){
+    toast=document.createElement('div');
+    toast.id='dkStudentToast';
+    toast.className='dk-toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML=`<div><b>${esc(title||'تم التنفيذ')}</b><span>${esc(subtitle||'')}</span></div>${undoId?`<button type="button" onclick="undoStudentDelete('${enc(undoId)}')">تراجع</button>`:''}`;
+  toast.classList.add('show');
+  clearTimeout(dkToastTimer);
+  dkToastTimer=setTimeout(()=>toast.classList.remove('show'),5200);
+}
+function confirmStudentDeleteItem(){
+  let r=pendingDeleteStudentItem;
+  if(!r||!r.id)return closeStudentDeleteModal();
+  let p=loadStudentProgress();
+  lastDeletedStudentItem={record:r,wasCompleted:p.completed&&p.completed[r.id]?p.completed[r.id]:null};
+  p.hidden[r.id]=true;
+  delete p.completed[r.id];
+  saveStudentProgress(p);
+  closeStudentDeleteModal();
+  render(true);
+  showStudentToast('تم حذف العنصر من فضاء التلميذ',r.title||'',r.id);
+  return false;
+}
+function deleteStudentItem(id){
+  try{id=decodeURIComponent(String(id||''))}catch(e){}
+  if(!id)return false;
+  return requestDeleteStudentItem(encodeItemRecord({id,kind:'item',title:'هذا العنصر',subtitle:'عنصر في فضاء التلميذ'}));
+}
+function restoreStudentItem(id){let p=loadStudentProgress();delete p.hidden[id];saveStudentProgress(p);render(true);return false}
+function undoStudentDelete(id){
+  try{id=decodeURIComponent(String(id||''))}catch(e){}
+  if(!id)return false;
+  let p=loadStudentProgress();
+  delete p.hidden[id];
+  if(lastDeletedStudentItem&&lastDeletedStudentItem.wasCompleted&&lastDeletedStudentItem.record&&lastDeletedStudentItem.record.id===id){
+    p.completed[id]=lastDeletedStudentItem.wasCompleted;
+  }
+  saveStudentProgress(p);
+  render(true);
+  let toast=document.getElementById('dkStudentToast');if(toast)toast.classList.remove('show');
+  showStudentToast('تم إرجاع العنصر','رجع العنصر للفضاء الخاص به.',null);
+  return false;
+}
+function buildLessonRecord(l){return {id:itemId('lesson',[l.level,l.n]),kind:'lesson',title:l.title||('Lesson '+l.n),subtitle:(l.level||'')+' · Lesson '+(l.n||''),desc:l.desc||'',path:l.path||'',query:'',level:l.level,n:l.n,icon:'📚'}}
+function buildExerciseRecord(ex){let st=currentStudent||{id:currentStudentId||'',name:''};let examId='exercise_'+String(ex.level||'').toLowerCase()+'_'+String(ex.n||'');let examName=ex.title||('تمرين '+(ex.n||''));let query=`studentId=${encodeURIComponent(st.id||'')}&studentName=${encodeURIComponent(st.name||'')}&assignmentId=&examId=${encodeURIComponent(examId)}&examName=${encodeURIComponent(examName)}`;return {id:itemId('exercise',[ex.level,ex.n]),kind:'exercise',title:ex.title||('تمرين '+ex.n),subtitle:(ex.level||'')+' · تمرين '+(ex.n||''),desc:ex.desc||'',path:ex.path||'',query,level:ex.level,n:ex.n,icon:'🧠'}}
+function buildExamRecord(e,a,student){let query=`studentId=${encodeURIComponent(student?.id||currentStudent?.id||'')}&studentName=${encodeURIComponent(student?.name||currentStudent?.name||'')}&assignmentId=${encodeURIComponent(a?.id||'')}&examId=${encodeURIComponent(e?.id||'')}&examName=${encodeURIComponent(e?.name||'')}`;return {id:itemId('exam',[a?.id||e?.id||e?.path||'exam']),kind:'exam',title:e?.name||'امتحان',subtitle:(e?.level?e.level+' · ':'')+(e?.type||portalExamCategory(e)||'امتحان'),desc:e?.desc||'',path:e?.path||'',query,examId:e?.id||'',assignmentId:a?.id||'',level:e?.level||'',icon:'📝'}}
+function studentItemActionButtons(record,openLabel){let encoded=encodeItemRecord(record);let completed=isStudentItemCompleted(record.id);let disabled=!record.path;return `<div class="item-action-row"><button class="btn content-open-btn" type="button" ${disabled?'disabled':''} onclick="return openStudentItem('${encoded}')">فتح</button><button class="btn item-completed-btn ${completed?'done':''}" type="button" ${completed?'disabled':''} onclick="return markStudentItemCompleted('${encoded}')">${completed?'مكتمل ✓':'مكتمل'}</button><button class="btn item-delete-btn" type="button" onclick="return requestDeleteStudentItem('${encoded}')">حذف</button></div>`}
+function renderStudentItemCard(record,extraHtml=''){let encoded=encodeItemRecord(record);let completed=isStudentItemCompleted(record.id);return `<div class="item-button-card ${completed?'completed':''}"><div class="item-card-head"><span class="pill ${record.kind==='exam'?'yellow':record.kind==='lesson'?'green':''}">${esc(itemKindLabel(record.kind))}</span>${completed?'<span class="pill green">مكتمل</span>':''}</div><button class="item-main-button" type="button" onclick="return openStudentItem('${encoded}')"><span class="item-main-icon">${esc(record.icon||itemKindIcon(record.kind))}</span><span class="item-main-text"><b>${esc(record.title||'عنصر')}</b><span>${esc(record.subtitle||'اضغط لفتح المحتوى')}</span></span></button>${record.desc?`<p class="item-desc">${esc(record.desc)}</p>`:''}${extraHtml||''}${record.path?`<p class="muted ltr" style="margin:0;font-size:11px;word-break:break-all">${esc(record.path)}</p>`:'<span class="pill yellow">بدون رابط</span>'}${studentItemActionButtons(record)}</div>`}
+function completedItemsByKind(){let p=loadStudentProgress();let arr=Object.values(p.completed||{}).filter(Boolean).filter(x=>!p.hidden?.[x.id]).sort((a,b)=>new Date(b.completedAt||0)-new Date(a.completedAt||0));return {lesson:arr.filter(x=>x.kind==='lesson'),exercise:arr.filter(x=>x.kind==='exercise'),exam:arr.filter(x=>x.kind==='exam'),all:arr}}
+function renderCompleted(){let area=document.getElementById('completedArea');if(!area)return;let groups=completedItemsByKind();let total=groups.all.length;if(!total){area.innerHTML='<div class="empty">ما كاين حتى عنصر مكتمل دابا. من الدروس أو التمارين أو الامتحانات، ضغط على زر <b>مكتمل</b> باش يتحفظ هنا.</div>';return}let renderGroup=(kind,title,items)=>items.length?`<div class="completed-section"><div class="level-head"><div><h2>${esc(title)}</h2><p>العناصر المكتملة من نوع ${esc(title)}. اضغط على أي زر باش ترجع للمحتوى.</p></div><span class="pill green">${items.length}</span></div><div class="completed-grid">${items.map(r=>renderStudentItemCard(r,`<div class="completed-meta"><span class="pill green">أُكمل: ${esc(fmtDate(r.completedAt))}</span></div>`)).join('')}</div></div>`:'';area.innerHTML=`<div class="completed-space-note">هذا الفضاء كيجمع كل ما علّمه التلميذ كمكتمل: الدروس، التمارين، والامتحانات. العناصر هنا عبارة عن أزرار مباشرة تفتح المحتوى داخل نفس الصفحة.</div><div class="completed-tabs"><button class="completed-filter-btn active" type="button" onclick="showCompletedFilter('all',event)">✅ الكل: ${total}</button><button class="completed-filter-btn" type="button" onclick="showCompletedFilter('lesson',event)">📚 الدروس: ${groups.lesson.length}</button><button class="completed-filter-btn" type="button" onclick="showCompletedFilter('exercise',event)">🧠 التمارين: ${groups.exercise.length}</button><button class="completed-filter-btn" type="button" onclick="showCompletedFilter('exam',event)">📝 الامتحانات: ${groups.exam.length}</button></div><div id="completedGroupsWrap">${renderGroup('lesson','الدروس',groups.lesson)}${renderGroup('exercise','التمارين',groups.exercise)}${renderGroup('exam','الامتحانات',groups.exam)}</div>`}
+function showCompletedFilter(kind,ev){let groups=completedItemsByKind();document.querySelectorAll('.completed-filter-btn').forEach(btn=>btn.classList.remove('active'));if(ev&&ev.currentTarget)ev.currentTarget.classList.add('active');let wrap=document.getElementById('completedGroupsWrap');if(!wrap)return;let renderGroup=(title,items)=>items.length?`<div class="completed-section"><div class="level-head"><div><h2>${esc(title)}</h2><p>اضغط على الزر لفتح المحتوى.</p></div><span class="pill green">${items.length}</span></div><div class="completed-grid">${items.map(r=>renderStudentItemCard(r,`<div class="completed-meta"><span class="pill green">أُكمل: ${esc(fmtDate(r.completedAt))}</span></div>`)).join('')}</div></div>`:`<div class="empty">لا توجد عناصر في هذا التصنيف.</div>`;if(kind==='lesson')wrap.innerHTML=renderGroup('الدروس',groups.lesson);else if(kind==='exercise')wrap.innerHTML=renderGroup('التمارين',groups.exercise);else if(kind==='exam')wrap.innerHTML=renderGroup('الامتحانات',groups.exam);else wrap.innerHTML=(groups.lesson.length?renderGroup('الدروس',groups.lesson):'')+(groups.exercise.length?renderGroup('التمارين',groups.exercise):'')+(groups.exam.length?renderGroup('الامتحانات',groups.exam):'')}
+
+function renderLessons(db,studentId){
+  let lessons=visibleLessons(db,studentId).map(buildLessonRecord).filter(r=>!isStudentItemHidden(r.id));
+  stLessons.textContent=lessons.length;
+  if(!lessons.length){lessonsArea.innerHTML='<div class="empty">ما كاين حتى درس مفعّل ليك دابا، أو قمت بحذف الدروس من فضائك. ملي الأستاذ يفعّل درس غادي يبان هنا.</div>';return}
+  let byLevel={};lessons.forEach(r=>{(byLevel[r.level] ||= []).push(r)});
+  lessonsArea.innerHTML=LESSON_LEVELS.filter(level=>byLevel[level]?.length).map(level=>`<div class="level-section"><div class="level-head"><div><h2>${esc(level)}</h2><p>الدروس ظاهرة على شكل أزرار مباشرة. زر فتح كيدخل للمحتوى، وزر مكتمل كيحفظ الدرس في فضاء المكتمل.</p></div><span class="pill green">${byLevel[level].length}/12</span></div><div class="level-content lesson-grid">${byLevel[level].map(r=>renderStudentItemCard(r)).join('')}</div></div>`).join('')
+}
+
+function renderExercises(db,studentId){
+  let exercises=visibleExercises(db,studentId).map(buildExerciseRecord).filter(r=>!isStudentItemHidden(r.id));
+  stExercises.textContent=exercises.length;
+  if(!exercises.length){exercisesArea.innerHTML='<div class="empty">ما كاين حتى تمرين مفعّل ليك دابا، أو قمت بحذف التمارين من فضائك. ملي الأستاذ يفعّل تمرين غادي يبان هنا.</div>';return}
+  let byLevel={};exercises.forEach(r=>{(byLevel[r.level] ||= []).push(r)});
+  exercisesArea.innerHTML=LESSON_LEVELS.filter(level=>byLevel[level]?.length).map(level=>`<div class="level-section"><div class="level-head"><div><h2>${esc(level)}</h2><p>التمارين ظاهرة على شكل أزرار. يمكن فتحها، تعليمها كمكتملة، أو حذفها من فضاء التلميذ.</p></div><span class="pill green">${byLevel[level].length}/12</span></div><div class="level-content lesson-grid">${byLevel[level].map(r=>renderStudentItemCard(r)).join('')}</div></div>`).join('')
+}
+
+function portalExamCategory(e){let p=String(e?.path||'').toLowerCase(),t=String(e?.type||'').toLowerCase(),c=String(e?.category||'').toLowerCase();if(c)return c;if(p.includes('/partials/')||['lesen','hören','hoeren','schreiben','sprachbausteine'].includes(t))return 'partial';if(p.includes('exercises/')||t.includes('تمرين')||t.includes('übung'))return 'exercise';return 'complete'}
+function portalExamPill(e){let c=portalExamCategory(e);if(c==='partial')return `<span class="pill yellow">جزئي · ${esc(e?.type||'')}</span>`;if(c==='exercise')return `<span class="pill yellow">تمرين</span>`;return `<span class="pill green">كامل</span>`}
+
+function togglePartialExamGroup(btn){
+  let box=btn?.closest?.('.partial-exam-group');
+  if(!box)return;
+  let key=box.getAttribute('data-partial-group')||'';
+  let isOpen=box.classList.toggle('open');
+  if(key){
+    if(isOpen)openPartialExamGroups.add(key);
+    else openPartialExamGroups.delete(key);
+  }
+  try{btn.setAttribute('aria-expanded',String(isOpen))}catch(e){}
+}
+function examBaseNameForPortal(x){let name=String(x?.name||'').trim();if(name.includes('—'))return name.split('—')[0].trim();if(name.includes('-'))return name.split('-')[0].trim();let id=String(x?.id||'').replace(/^exam_/,'').replace(/_(lesen|hoeren|hören|schreiben|sprachbausteine)$/i,'');return id?id.charAt(0).toUpperCase()+id.slice(1):'امتحان'}
+function examPartOrderForPortal(x){let t=String(x?.type||x?.name||x?.path||'').toLowerCase();if(t.includes('lesen'))return 1;if(t.includes('sprach'))return 2;if(t.includes('hör')||t.includes('hoer'))return 3;if(t.includes('schreib'))return 4;return 9}
+function examPartIconForPortal(x){let t=String(x?.type||x?.name||x?.path||'').toLowerCase();if(t.includes('lesen'))return '📖';if(t.includes('sprach'))return '🧩';if(t.includes('hör')||t.includes('hoer'))return '🎧';if(t.includes('schreib'))return '✍️';return '📄'}
+function examPartLabelForPortal(x){let t=String(x?.type||'').trim();if(t)return t;let n=String(x?.name||'');return n.includes('—')?n.split('—').slice(1).join('—').trim():n}
+function groupPartialAssignmentsForPortal(items){let groups={};(items||[]).forEach(obj=>{let key=examBaseNameForPortal(obj.exam);(groups[key] ||= []).push(obj)});return Object.entries(groups).sort((a,b)=>a[0].localeCompare(b[0])).map(([name,parts])=>({name,parts:parts.sort((a,b)=>examPartOrderForPortal(a.exam)-examPartOrderForPortal(b.exam))}))}
+function renderPartialGroupsForPortal(items,renderPart){
+  let groups=groupPartialAssignmentsForPortal(items);
+  return `<div class="partial-groups">${groups.map(g=>{
+    let key='partial_'+String(g.name||'').replace(/[^\w؀-ۿ\-]+/g,'_');
+    let isOpen=openPartialExamGroups.has(key);
+    return `<div class="partial-exam-group ${isOpen?'open':''}" data-partial-group="${esc(key)}"><button type="button" class="partial-group-toggle" aria-expanded="${isOpen?'true':'false'}" onclick="togglePartialExamGroup(this)"><span><span class="partial-group-title"><b>🧩 ${esc(g.name)}</b><span class="pill yellow">${g.parts.length} أجزاء</span></span><span class="partial-group-sub">اضغط هنا باش تبان أجزاء هذا الامتحان.</span></span><span class="partial-group-arrow">⌄</span></button><div class="partial-parts partial-part-grid">${g.parts.map(renderPart).join('')}</div></div>`;
+  }).join('')}</div>`
+}
+
+
+function studentExamOpenButton(db,e,a,student,label){
+  const record=buildExamRecord(e,a,student);
+  return record.path?`<button class="btn content-open-btn" type="button" onclick="return openStudentItem('${encodeItemRecord(record)}')">${esc(label||'فتح الامتحان')}</button>`:'';
+}
+function renderExams(db,student){
+  let list=assignmentsForStudent(db,student.id).filter(x=>x.exam).map(x=>({...x,record:buildExamRecord(x.exam,x.assignment,student)})).filter(x=>!isStudentItemHidden(x.record.id));
+  stExams.textContent=list.length;
+  if(!list.length){examsArea.innerHTML='<div class="empty">ما كاين حتى امتحان معيّن ليك دابا، أو قمت بحذف الامتحانات من فضائك.</div>';return}
+  const renderCard=({assignment:a,exam:e,record:r})=>`<div class="exam-card"><div style="flex:1"><div class="item-card-head"><h3 style="margin:0">${esc(e?.name||'امتحان محذوف')} ${e?.level?`<span class="pill">${esc(e.level)}</span>`:''} ${portalExamPill(e)} ${isStudentItemCompleted(r.id)?'<span class="pill green">مكتمل</span>':''}</h3></div><p>${esc(e?.desc||'')}</p><p>تاريخ التعيين: <b>${esc(a.date||'غير محدد')}</b> · الحالة: ${statusPill(a.status)}</p>${e?.path?`<p class="ltr">${esc(e.path)}</p>`:''}</div><div class="actions" style="min-width:280px">${studentItemActionButtons(r,'فتح الامتحان')}</div></div>`;
+  const renderPart=({assignment:a,exam:e,record:r})=>`<div class="partial-part-card item-button-card ${isStudentItemCompleted(r.id)?'completed':''}"><h3>${examPartIconForPortal(e)} ${esc(examPartLabelForPortal(e))} ${isStudentItemCompleted(r.id)?'<span class="pill green">مكتمل</span>':''}</h3><p>${esc(e?.desc||'')}</p><p>تاريخ التعيين: <b>${esc(a.date||'غير محدد')}</b> · ${statusPill(a.status)}</p>${e?.path?`<p class="ltr">${esc(e.path)}</p>`:'<span class="pill yellow">بدون رابط</span>'}${studentItemActionButtons(r,'فتح')}</div>`;
+  const complete=list.filter(x=>portalExamCategory(x.exam)==='complete');
+  const partial=list.filter(x=>portalExamCategory(x.exam)==='partial');
+  const other=list.filter(x=>!['complete','partial'].includes(portalExamCategory(x.exam)));
+  examsArea.innerHTML=`${complete.length?`<div class="level-section"><div class="exam-group-head"><div><h2>📘 الامتحانات الكاملة</h2><p>كل امتحان عندو أزرار: فتح، مكتمل، حذف.</p></div><span class="pill green">${complete.length}</span></div><div class="level-content exam-list">${complete.map(renderCard).join('')}</div></div>`:''}${partial.length?`<div class="level-section"><div class="exam-group-head"><div><h2>🧩 الامتحانات الجزئية</h2><p>كل امتحان عندو زر بوحدو، ومن بعد كتفتح الأجزاء ديالو وتقدر تعلم كل جزء كمكتمل.</p></div><span class="pill yellow">${partial.length}</span></div>${renderPartialGroupsForPortal(partial,renderPart)}</div>`:''}${other.length?`<div class="level-section"><div class="exam-group-head"><div><h2>🧠 عناصر أخرى</h2><p>تمارين أو عناصر إضافية.</p></div><span class="pill">${other.length}</span></div><div class="level-content exam-list">${other.map(renderCard).join('')}</div></div>`:''}`;
+}
+
+function chartNumber(v){if(v==null||v==='')return null;let n=Number(String(v).replace('%','').replace(',','.').trim());return Number.isFinite(n)?n:null}
+function resultPercent(r){let p=chartNumber(r.percent);if(p!=null)return Math.max(0,Math.min(100,p));let s=chartNumber(r.score),m=chartNumber(r.max);if(s!=null&&m>0)return Math.max(0,Math.min(100,(s/m)*100));let w=chartNumber(r.writingScore);if(w!=null)return Math.max(0,Math.min(100,(w/45)*100));return null}
+function durationSecondsFromValue(raw){if(raw==null||raw==='')return null;if(typeof raw==='number'){let n=raw>100000?raw/1000:raw;return Number.isFinite(n)?Math.max(0,n):null}let s=String(raw).trim();if(!s)return null;let only=Number(s.replace(',','.'));if(Number.isFinite(only)){let n=only>100000?only/1000:only;return Math.max(0,n)}let parts=s.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);if(parts){let h=parts[3]?Number(parts[1]):0,m=parts[3]?Number(parts[2]):Number(parts[1]),sec=Number(parts[3]||parts[2]);return h*3600+m*60+sec}let total=0,matched=false;let h=s.match(/(\d+(?:[\.,]\d+)?)\s*(?:س|ساعة|h|hour)/i);if(h){total+=Number(h[1].replace(',','.'))*3600;matched=true}let m=s.match(/(\d+(?:[\.,]\d+)?)\s*(?:د|دقيقة|min|m)/i);if(m){total+=Number(m[1].replace(',','.'))*60;matched=true}let sec=s.match(/(\d+(?:[\.,]\d+)?)\s*(?:ث|ثانية|sec|s)/i);if(sec){total+=Number(sec[1].replace(',','.'));matched=true}return matched&&Number.isFinite(total)?Math.max(0,total):null}
+function resultDurationSecondsForChart(r){let d=durationSecondsFromValue(r.durationText||r.duration||r.timeSpent||r.elapsedTime||r.elapsedSeconds||r.timer);if(d!=null)return d;let start=r.startedAt||r.startTime||r.start||r.examStartedAt||'',end=r.finishedAt||r.submittedAt||r.savedAt||r.endTime||r.end||'';if(start&&end){let a=new Date(start),b=new Date(end);if(!isNaN(a)&&!isNaN(b))return Math.max(0,(b-a)/1000)}return null}
+function resultDateForChart(r){let raw=r.finishedAt||r.submittedAt||r.savedAt||r.endTime||r.end||r.startedAt||r.startTime||r.start||'';let d=raw?new Date(raw):null;return d&&!isNaN(d)?d:null}
+function resultStudentIdentity(r){return String(r.studentId||r.studentName||'anonymous').trim()}
+function resultExamIdentity(r){return String(r.examId||r.path||r.examName||'exam').trim()}
+function resultDateMs(r){let d=resultDateForChart(r);return d&&!isNaN(d)?d.getTime():0}
+function resultAttemptNo(r,scope){let direct=Number(r.attemptNo||r.attempt||r.tryNo||r.entryNo);if(Number.isFinite(direct)&&direct>0)return Math.round(direct);let list=(scope||getResults()).filter(x=>resultStudentIdentity(x)===resultStudentIdentity(r)&&resultExamIdentity(x)===resultExamIdentity(r)).sort((a,b)=>resultDateMs(a)-resultDateMs(b));let idx=list.indexOf(r);if(idx<0){let rid=String(r.id||'');idx=list.findIndex(x=>rid&&String(x.id||'')===rid)}return idx>=0?idx+1:1}
+function attemptPill(r,scope){return `<span class="pill yellow">المحاولة ${esc(resultAttemptNo(r,scope))}</span>`}
+function chartPoints(results){return (results||[]).map((r,i)=>{let date=resultDateForChart(r);return {raw:r,index:i,date:date||new Date(0+i),dateOk:!!date,percent:resultPercent(r),durationSec:resultDurationSecondsForChart(r),exam:r.examName||r.path||'امتحان',attemptNo:resultAttemptNo(r,results)}}).filter(p=>p.percent!=null||p.durationSec!=null).sort((a,b)=>a.date-b.date)}
+function chartDateLabel(d,i){if(!d||isNaN(d)||d.getFullYear()<2001)return '#'+(i+1);return d.toLocaleDateString('ar-MA',{month:'2-digit',day:'2-digit'})}
+function renderChartSummary(id,points){let el=document.getElementById(id);if(!el)return;let scores=points.map(p=>p.percent).filter(v=>v!=null),durations=points.map(p=>p.durationSec).filter(v=>v!=null);if(!points.length){el.innerHTML='';return}let html=[];if(scores.length){let avg=scores.reduce((a,b)=>a+b,0)/scores.length;let best=points.filter(p=>p.percent!=null).reduce((a,b)=>!a||b.percent>a.percent?b:a,null);let latest=points.filter(p=>p.percent!=null).at(-1);html.push(`<span class="pill">متوسط النسبة: ${Math.round(avg)}%</span>`);if(best)html.push(`<span class="pill green">أحسن نتيجة: ${Math.round(best.percent)}%</span>`);if(latest)html.push(`<span class="pill">آخر نتيجة: ${Math.round(latest.percent)}%</span>`)}if(durations.length){let avgD=durations.reduce((a,b)=>a+b,0)/durations.length;html.push(`<span class="pill yellow">متوسط المدة: ${fmtDuration(avgD)}</span>`)}el.innerHTML=html.join('')}
+function drawResultsChart(canvasId,summaryId,results,emptyText){let canvas=document.getElementById(canvasId);if(!canvas)return;let points=chartPoints(results).slice(-30);renderChartSummary(summaryId,points);let parent=canvas.parentElement;let width=Math.max(680,Math.floor(parent?.clientWidth||canvas.clientWidth||760));let height=320,dpr=window.devicePixelRatio||1;canvas.width=width*dpr;canvas.height=height*dpr;canvas.style.height=height+'px';let ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);ctx.font='12px Segoe UI, Tahoma, Arial';ctx.fillStyle='#ffffff';ctx.fillRect(0,0,width,height);if(!points.length){ctx.fillStyle='#64748b';ctx.textAlign='center';ctx.fillText(emptyText||'ما كايناش نتائج كافية باش نرسم المبيان',width/2,height/2);return}let left=54,right=66,top=34,bottom=66,plotW=width-left-right,plotH=height-top-bottom,baseY=height-bottom;ctx.strokeStyle='rgba(148,163,184,.35)';ctx.fillStyle='#64748b';ctx.textAlign='right';ctx.textBaseline='middle';[0,25,50,75,100].forEach(v=>{let y=baseY-(v/100)*plotH;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(width-right,y);ctx.stroke();ctx.fillText(v+'%',left-8,y)});let maxDur=Math.max(1,...points.map(p=>p.durationSec||0))/60;ctx.textAlign='left';[0,.25,.5,.75,1].forEach(f=>{let y=baseY-f*plotH;ctx.fillText(Math.round(maxDur*f)+'د',width-right+8,y)});ctx.fillStyle='#1e3a8a';ctx.font='bold 12px Segoe UI, Tahoma, Arial';ctx.textAlign='right';ctx.fillText('النسبة',left+34,18);ctx.textAlign='left';ctx.fillText('المدة',width-right-6,18);let xFor=i=>points.length===1?left+plotW/2:left+(i/(points.length-1))*plotW;let barW=Math.max(8,Math.min(28,plotW/(points.length*1.9)));points.forEach((p,i)=>{if(p.durationSec==null)return;let x=xFor(i),h=(p.durationSec/60)/maxDur*plotH;ctx.fillStyle='rgba(37,99,235,.18)';ctx.strokeStyle='rgba(37,99,235,.35)';ctx.fillRect(x-barW/2,baseY-h,barW,h);ctx.strokeRect(x-barW/2,baseY-h,barW,h)});ctx.strokeStyle='#1e40af';ctx.lineWidth=3;ctx.beginPath();let started=false;points.forEach((p,i)=>{if(p.percent==null)return;let x=xFor(i),y=baseY-(p.percent/100)*plotH;if(!started){ctx.moveTo(x,y);started=true}else ctx.lineTo(x,y)});ctx.stroke();points.forEach((p,i)=>{if(p.percent==null)return;let x=xFor(i),y=baseY-(p.percent/100)*plotH;ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0f172a';ctx.font='bold 11px Segoe UI, Tahoma, Arial';ctx.textAlign='center';ctx.fillText(Math.round(p.percent)+'%',x,Math.max(12,y-12))});let skip=Math.max(1,Math.ceil(points.length/7));ctx.fillStyle='#475569';ctx.font='11px Segoe UI, Tahoma, Arial';ctx.textAlign='center';points.forEach((p,i)=>{if(i%skip&&i!==points.length-1)return;ctx.fillText(chartDateLabel(p.date,i),xFor(i),baseY+24);if(p.attemptNo){ctx.fillText('م'+p.attemptNo,xFor(i),baseY+42)}});ctx.strokeStyle='#334155';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,top);ctx.lineTo(left,baseY);ctx.lineTo(width-right,baseY);ctx.stroke()}
+
+function normalizeResultText(v){return String(v??'').trim().toLowerCase()}
+function resultKind(r){
+  let direct=normalizeResultText(r.resultType||r.category||r.kind||r.itemType||r.contentType);
+  if(direct.includes('exercise')||direct.includes('exercice')||direct.includes('تمرين')||direct.includes('تمارين'))return 'exercise';
+  if(direct.includes('exam')||direct.includes('prüfung')||direct.includes('امتحان'))return 'exam';
+  let id=normalizeResultText(r.examId||r.exerciseId||''),path=normalizeResultText(r.path||''),name=normalizeResultText(r.examName||r.name||'');
+  if(id.startsWith('exercise_')||id.includes('_exercise')||path.includes('exercises/')||path.includes('/exercises/')||path.includes('exercise')||name.includes('lektion 5')&&id.includes('lektion5'))return 'exercise';
+  try{
+    let db=loadDB();
+    let catalog=[];
+    (db.exams||[]).forEach(e=>catalog.push({kind:(String(e.path||'').includes('exercises/')||String(e.type||'').includes('تمرين'))?'exercise':'exam',id:e.id,path:e.path,name:e.name,type:e.type}));
+    Object.keys(db.exercises||{}).forEach(level=>Object.keys(db.exercises[level]||{}).forEach(n=>{let e=db.exercises[level][n];catalog.push({kind:'exercise',id:'exercise_'+level+'_'+n,path:e.path,name:e.title||e.name,type:'exercise'})}));
+    let match=catalog.find(e=>
+      (r.examId&&String(e.id||'')===String(r.examId))||
+      (r.path&&String(e.path||'').split('/').pop()===String(r.path).split('/').pop())||
+      (r.examName&&String(e.name||'')===String(r.examName))
+    );
+    if(match)return match.kind;
+  }catch(e){}
+  return 'exam';
+}
+
+function resultTypePill(kind){return kind==='exercise'?'<span class="pill yellow">تمرين</span>':'<span class="pill">امتحان</span>'}
+function studentResultScoreHTML(r){return r.score!=null?esc(r.score)+' / '+esc(r.max||r.maxScore||''):esc(r.finalText||'-')}
+function studentResultPercentHTML(r){let p=resultPercent(r);return p!=null?'<span class="pill green">'+esc(String(Math.round(Number(p))))+'%</span>':(r.percent!=null?'<span class="pill green">'+esc(String(r.percent))+'</span>':'-')}
+function studentResultWritingHTML(r){return r.writingScore!=null?esc(r.writingScore)+' / 45':'-'}
+function studentGroupKey(r){return [resultExamIdentity(r),resultKind(r)].join('||')}
+function studentGroupedResults(indexed){let groups={};(indexed||[]).forEach(({r,i})=>{let key=studentGroupKey(r);(groups[key] ||= []).push({r,i})});return Object.values(groups).map(arr=>{arr=arr.slice().sort((a,b)=>resultDateMs(a.r)-resultDateMs(b.r));return {attempts:arr.map((x,j)=>({...x,attemptNo:j+1})),latest:arr[arr.length-1]};}).sort((a,b)=>resultDateMs(b.latest.r)-resultDateMs(a.latest.r))}
+function selectStudentGroupedAttempt(rowId,resultIndex,attemptNo){let x=currentResults[resultIndex];if(!x)return;let t=resultTiming(x);let set=(suffix,html)=>{let el=document.getElementById(rowId+'_'+suffix);if(el){el.innerHTML=html;el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),260)}};set('attempt','المحاولة '+esc(attemptNo));set('score',studentResultScoreHTML(x));set('percent',studentResultPercentHTML(x));set('writing',studentResultWritingHTML(x));set('date',esc(t.date));set('duration',esc(t.duration));let btn=document.getElementById(rowId+'_show');if(btn)btn.setAttribute('onclick','showResult('+resultIndex+')');document.querySelectorAll('[data-attempt-row="'+rowId+'"]').forEach(b=>b.classList.toggle('active',Number(b.getAttribute('data-result-index'))===Number(resultIndex)));let tr=document.getElementById(rowId);if(tr){tr.classList.add('attempt-row-selected');setTimeout(()=>tr.classList.remove('attempt-row-selected'),450)}}
+function studentResultRows(indexed,scope){
+  let groups=studentGroupedResults(indexed);
+  return groups.map((g,gi)=>{let x=g.latest.r,i=g.latest.i,t=resultTiming(x),kind=resultKind(x);let rowId=`srg_${kind}_${gi}_${Math.abs(String(studentGroupKey(x)).split('').reduce((a,c)=>((a<<5)-a+c.charCodeAt(0))|0,0))}`;let attemptsMenu=`<div class="attempt-picker"><details><summary class="btn small btn-gray"><span id="${rowId}_attempt">المحاولة ${g.latest.attemptNo}</span><span class="attempt-mini">${g.attempts.length} محاولة</span></summary><div class="attempt-menu">${g.attempts.map(a=>{let tt=resultTiming(a.r);return `<button type="button" data-attempt-row="${rowId}" data-result-index="${a.i}" class="${a.i===i?'active':''}" onclick="selectStudentGroupedAttempt('${rowId}',${a.i},${a.attemptNo}); this.closest('details').removeAttribute('open')"><span>المحاولة ${a.attemptNo}</span><span>${esc(tt.date)} · ${esc(a.r.percent!=null?a.r.percent+'%':'-')}</span></button>`}).join('')}</div></details></div>`;return `<tr id="${rowId}"><td><b>${esc(resultTitle(x))}</b><div style="margin-top:5px">${resultTypePill(kind)}</div></td><td>${attemptsMenu}</td><td id="${rowId}_score" class="result-score result-cell-live">${studentResultScoreHTML(x)}</td><td id="${rowId}_percent" class="result-cell-live">${studentResultPercentHTML(x)}</td><td id="${rowId}_writing" class="result-cell-live">${studentResultWritingHTML(x)}</td><td id="${rowId}_date" class="result-cell-live"><div class="result-time"><span><b>تاريخ المحاولة:</b> ${esc(t.date)}</span></div></td><td id="${rowId}_duration" class="result-cell-live">${esc(t.duration)}</td><td class="attempt-action-cell"><button id="${rowId}_show" class="small btn-gray" onclick="showResult(${i})">عرض</button></td></tr>`}).join('')
+}
+function resultTitle(r){return r.examName||r.title||r.name||r.path||(resultKind(r)==='exercise'?'تمرين':'امتحان')}
+function pctValue(r){let p=resultPercent(r);return p==null?null:Math.round(Number(p))}
+function pctText(r){let p=pctValue(r);return p==null?'—':p+'%'}
+function resultStatusInfo(p){if(p==null)return {cls:'result-status-mid',txt:'غير مكتمل',icon:'•'};if(p>=75)return {cls:'result-status-good',txt:'ممتاز',icon:'✓'};if(p>=60)return {cls:'result-status-good',txt:'ناجح',icon:'✓'};if(p>=40)return {cls:'result-status-mid',txt:'يحتاج مراجعة',icon:'!'};return {cls:'result-status-bad',txt:'ضعيف',icon:'!'}}
+function statAveragePercent(list){let vals=(list||[]).map(x=>pctValue(x.r||x)).filter(v=>v!=null);return vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null}
+function statBestResult(list){let vals=(list||[]).map(x=>x.r||x).filter(r=>pctValue(r)!=null);return vals.length?vals.reduce((a,b)=>pctValue(b)>pctValue(a)?b:a):null}
+function statLatestResult(list){let vals=(list||[]).map(x=>x.r||x).filter(Boolean).sort((a,b)=>resultDateMs(b)-resultDateMs(a));return vals[0]||null}
+function countAttemptsLabel(n){n=Number(n||0);return n===1?'محاولة واحدة':n+' محاولات'}
+function resultMetaLine(r){let t=resultTiming(r);let kind=resultKind(r)==='exercise'?'تمرين':'امتحان';return kind+' · '+t.date+' · المدة: '+t.duration}
+function resultPercentDeg(r){let p=pctValue(r);return p==null?0:Math.max(0,Math.min(100,p))*3.6}
+function resultMetricCard(icon,label,value,sub){return `<div class="result-metric-card"><div class="result-metric-icon">${icon}</div><div class="result-metric-label">${esc(label)}</div><div class="result-metric-value">${esc(value)}</div><div class="result-metric-sub">${esc(sub||'')}</div></div>`}
+function renderResultsHero(allIndexed,examIndexed,exerciseIndexed){
+  let avg=statAveragePercent(allIndexed),best=statBestResult(allIndexed),latest=statLatestResult(allIndexed);let avgShown=avg==null?'—':avg+'%';let latestTitle=latest?resultTitle(latest):'لا توجد نتيجة';let bestShown=best?pctText(best):'—';let gradeNote=avg==null?'ابدأ أول تمرين أو امتحان باش تظهر الإحصائيات هنا.':(avg>=60?'المعدل العام جيد. تابع نفس الإيقاع وراجع الأخطاء من زر التفاصيل.':'المعدل يحتاج مراجعة. ركز على المحاولات التي تحت 60% وافتح تفاصيل الأخطاء.');
+  return `<div class="results-hero-pro"><div class="results-hero-inner"><div><span class="results-eyebrow">📊 لوحة النتائج الذكية</span><h2>نتائجك منظمة بطريقة واضحة</h2><p>هنا تلقى ملخص الأداء، أحسن نتيجة، آخر محاولة، والتمييز بين الامتحانات والتمارين. كل بطاقة نتيجة كتخليك تشوف التفاصيل والمحاولات بسرعة.</p><div class="results-hero-actions"><button class="btn" type="button" onclick="setResultsView('all')">كل النتائج</button><button class="btn" type="button" onclick="setResultsView('exam')">الامتحانات فقط</button><button class="btn" type="button" onclick="setResultsView('exercise')">التمارين فقط</button></div></div><div class="results-grade-panel"><div class="results-grade-top"><div><div class="results-grade-label">المعدل العام</div><div class="results-grade-number">${esc(avgShown)}</div></div><span class="pill green">${esc(allIndexed.length)} نتيجة</span></div><div class="results-progress-track"><div class="results-progress-fill" style="width:${avg==null?0:Math.max(0,Math.min(100,avg))}%"></div></div><div class="results-grade-note">${esc(gradeNote)}<br>آخر نتيجة: <b>${esc(latestTitle)}</b></div></div></div></div>`+
+  `<div class="results-metric-grid">${resultMetricCard('🧾','مجموع النتائج',allIndexed.length,'كل المحاولات المحفوظة')}${resultMetricCard('📝','الامتحانات',examIndexed.length,'نتائج الامتحانات فقط')}${resultMetricCard('🧠','التمارين',exerciseIndexed.length,'نتائج التمارين فقط')}${resultMetricCard('🏆','أحسن نتيجة',bestShown,best?resultTitle(best):'لا توجد نتيجة بعد')}</div>`
+}
+function resultAttemptStrip(g){
+  if(!g.attempts || g.attempts.length<=1)return `<span class="result-attempt-chip latest">المحاولة 1</span>`;
+  return g.attempts.map(a=>{let p=pctText(a.r);return `<button type="button" class="result-attempt-chip ${a.i===g.latest.i?'latest':''}" onclick="showResult(${a.i})">م${a.attemptNo} · ${esc(p)}</button>`}).join('')
+}
+function resultProfessionalCard(g){
+  let r=g.latest.r,i=g.latest.i,kind=resultKind(r),p=pctValue(r),status=resultStatusInfo(p),t=resultTiming(r);let title=resultTitle(r);let score=studentResultScoreHTML(r);let writing=studentResultWritingHTML(r);let attempts=g.attempts.length;
+  return `<div class="result-pro-card ${kind}"><div class="result-card-top"><div class="result-title-wrap"><h4>${esc(title)}</h4><p>${esc(resultMetaLine(r))}</p></div><span class="result-status-pill ${status.cls}">${status.icon} ${status.txt}</span></div><div class="result-score-panel"><div class="result-score-circle" style="--p:${resultPercentDeg(r)}deg"><span>${esc(pctText(r))}</span></div><div class="result-score-lines"><div class="result-score-line"><b>النقطة</b><span>${score}</span></div><div class="result-score-line"><b>المحاولة الأخيرة</b><span>المحاولة ${esc(g.latest.attemptNo)}</span></div><div class="result-score-line"><b>عدد المحاولات</b><span>${esc(countAttemptsLabel(attempts))}</span></div><div class="result-score-line"><b>Schreiben</b><span>${writing}</span></div></div></div><div class="result-attempt-strip">${resultAttemptStrip(g)}</div><div class="result-card-actions"><button class="btn" type="button" onclick="showResult(${i})">عرض التفاصيل</button><button class="btn-gray" type="button" onclick="setResultsView('${kind}')">عرض ${kind==='exercise'?'التمارين':'الامتحانات'}</button></div></div>`
+}
+function studentResultSection(kind,title,desc,indexed,canvasId,summaryId,emptyText){
+  let groups=studentGroupedResults(indexed);let avg=statAveragePercent(indexed),best=statBestResult(indexed);
+  if(!indexed.length)return `<div class="result-pro-section results-kind-${kind}"><div class="result-section-head-pro"><div><h3>${esc(title)}</h3><p>${esc(desc)}</p></div><span class="pill red">0 نتيجة</span></div><div class="result-empty-pro"><span class="big">${kind==='exercise'?'🧠':'📝'}</span>${esc(emptyText)}</div></div>`;
+  return `<div class="result-pro-section results-kind-${kind}"><div class="result-section-head-pro"><div><h3>${esc(title)}</h3><p>${esc(desc)}</p></div><div class="result-section-badges"><span class="pill">${indexed.length} نتيجة</span><span class="pill green">المعدل: ${avg==null?'—':avg+'%'}</span><span class="pill yellow">الأفضل: ${best?pctText(best):'—'}</span></div></div><div class="result-chart-card-pro"><div class="result-chart-wrap pro"><canvas id="${canvasId}" class="result-chart"></canvas></div><div id="${summaryId}" class="chart-summary"></div><div class="chart-legend"><span class="legend-item"><span class="legend-dot"></span>النقطة / النسبة</span><span class="legend-item"><span class="legend-bar"></span>المدة بالدقائق</span></div></div><div class="result-cards-grid">${groups.map(resultProfessionalCard).join('')}</div></div>`
+}
+function setResultsView(kind){
+  kind=['all','exam','exercise'].includes(kind)?kind:'all';window.__studentResultsView=kind;
+  document.querySelectorAll('.results-chip').forEach(b=>b.classList.toggle('active',b.getAttribute('data-results-view')===kind));
+  document.querySelectorAll('.results-kind-exam').forEach(el=>el.classList.toggle('results-hidden',kind==='exercise'));
+  document.querySelectorAll('.results-kind-exercise').forEach(el=>el.classList.toggle('results-hidden',kind==='exam'));
+}
+function renderResults(student){
+  currentResults=resultsForStudent(student);stResults.textContent=currentResults.length;
+  if(!currentResults.length){resultsArea.innerHTML='<div class="results-pro-page"><div class="results-hero-pro"><div class="results-hero-inner"><div><span class="results-eyebrow">📊 لوحة النتائج</span><h2>لا توجد نتائج محفوظة حاليا</h2><p>ملي تكمل امتحان أو تمرين وتحفظ النتيجة، غادي تبان هنا بطريقة منظمة مع النسبة، المحاولة، التاريخ، والمدة.</p></div><div class="results-grade-panel"><div class="results-grade-number">—</div><div class="results-grade-note">ابدأ أول محاولة باش تظهر الإحصائيات.</div></div></div></div><div class="result-empty-pro"><span class="big">📭</span>ما كاين حتى نتيجة محفوظة دابا.</div></div>';return}
+  let indexed=currentResults.map((r,i)=>({r,i}));let examIndexed=indexed.filter(x=>resultKind(x.r)==='exam');let exerciseIndexed=indexed.filter(x=>resultKind(x.r)==='exercise');let currentView=window.__studentResultsView||'all';
+  resultsArea.innerHTML=`<div class="results-pro-page">${renderResultsHero(indexed,examIndexed,exerciseIndexed)}<div class="results-filter-bar"><div><div class="results-filter-title">تصفية النتائج</div><div class="muted" style="font-weight:800;margin-top:4px">اختار واش تبغي تشوف الكل، الامتحانات فقط، أو التمارين فقط.</div></div><div class="results-filter-chips"><button class="results-chip" data-results-view="all" onclick="setResultsView('all')">كل النتائج</button><button class="results-chip" data-results-view="exam" onclick="setResultsView('exam')">الامتحانات</button><button class="results-chip" data-results-view="exercise" onclick="setResultsView('exercise')">التمارين</button></div></div>${studentResultSection('exam','نتائج الامتحانات','عرض احترافي لنتائج الامتحانات، آخر محاولة، أفضل نتيجة، والمدة الزمنية.',examIndexed,'studentExamResultsChart','studentExamChartSummary','ما كايناش نتائج امتحانات دابا.')}${studentResultSection('exercise','نتائج التمارين','عرض مستقل لنتائج التمارين حتى ما تختلطش مع الامتحانات.',exerciseIndexed,'studentExerciseResultsChart','studentExerciseChartSummary','ما كايناش نتائج تمارين دابا.')}</div>`;
+  drawResultsChart('studentExamResultsChart','studentExamChartSummary',examIndexed.map(x=>x.r),'ما كايناش نتائج امتحانات كافية باش نرسم المبيان');
+  drawResultsChart('studentExerciseResultsChart','studentExerciseChartSummary',exerciseIndexed.map(x=>x.r),'ما كايناش نتائج تمارين كافية باش نرسم المبيان');
+  setResultsView(currentView);
+}
+function detailVal(obj,names,def=''){for(const n of names){if(obj&&obj[n]!=null&&obj[n]!=='' )return obj[n]}return def}
+function normalizeDetailItem(item,i){if(typeof item==='string')return {index:i+1,question:item,userAnswer:'',correctAnswer:'',ok:null,section:''};let ok=detailVal(item,['ok','correct','isCorrect','valid'],null);if(ok==='true')ok=true;if(ok==='false')ok=false;return {index:detailVal(item,['index','number','no'],i+1),section:detailVal(item,['section','exercise','part','group'],''),question:detailVal(item,['question','prompt','title','text','sentence','label'],''),userAnswer:detailVal(item,['userAnswer','answer','studentAnswer','given','value','selected'],''),correctAnswer:detailVal(item,['correctAnswer','expected','solution','correct','rightAnswer'],''),ok}}
+function collectResultDetails(r){let arr=[];['details','questions','items','corrections','review'].some(k=>{if(Array.isArray(r&&r[k])){arr=r[k];return true}return false});if(!arr.length&&Array.isArray(r?.errors))arr=r.errors;if(!arr.length&&r?.answers&&typeof r.answers==='object'){arr=Object.entries(r.answers).map(([k,v],i)=>({index:i+1,question:k,userAnswer:v,correctAnswer:'',ok:null,section:'answers'}));}return arr.map(normalizeDetailItem)}
+function renderStudentResultDetail(r){
+  if(!r)return '<div class="empty">لا توجد نتيجة</div>';
+  let details=collectResultDetails(r);let wrong=details.filter(d=>d.ok===false);let kind=resultKind(r);let score=(r.score!=null&&r.score!=='')?`${esc(r.score)} / ${esc(r.max||r.maxScore||'')}`:esc(r.finalText||'-');let t=resultTiming(r);let p=pctValue(r);let status=resultStatusInfo(p);
+  let heading=`<div class="result-detail-title"><div><h3>${esc(resultTitle(r))}</h3><p>${kind==='exercise'?'تمرين':'امتحان'} · ${esc(t.date)} · ${esc(t.duration)}</p></div><span class="result-status-pill ${status.cls}">${status.icon} ${status.txt}</span></div>`;
+  let summary=`<div class="result-summary-grid"><div class="result-summary-box"><b>${kind==='exercise'?'التمرين':'الامتحان'}</b><span>${esc(resultTitle(r))}</span></div><div class="result-summary-box"><b>المحاولة</b><span>${attemptPill(r,currentResults)}</span></div><div class="result-summary-box"><b>تاريخ المحاولة</b><span>${esc(t.date)}</span></div><div class="result-summary-box"><b>النتيجة</b><span>${score}</span></div><div class="result-summary-box"><b>النسبة</b><span>${esc(p==null?(r.percent!=null?r.percent+'%':'-'):p+'%')}</span></div><div class="result-summary-box"><b>المدة</b><span>${esc(t.duration)}</span></div><div class="result-summary-box"><b>الأخطاء</b><span>${wrong.length}${details.length?' / '+details.length:''}</span></div></div>`;
+  let card=d=>`<div class="result-question-card ${d.ok===true?'ok':d.ok===false?'bad':'unknown'}"><div class="result-question-head"><b>${esc(d.section?d.section+' · ':'')}سؤال ${esc(d.index)}</b><span class="pill ${d.ok===true?'green':d.ok===false?'red':'yellow'}">${d.ok===true?'صحيح':d.ok===false?'خطأ':'غير محدد'}</span></div>${d.question?`<div class="result-answer-row"><div class="label">نص السؤال</div><div class="value">${esc(d.question)}</div></div>`:''}<div class="result-answer-row"><div class="label">جوابي</div><div class="value">${esc(d.userAnswer||'—')}</div></div>${d.correctAnswer?`<div class="result-answer-row"><div class="label">الجواب الصحيح</div><div class="value">${esc(d.correctAnswer)}</div></div>`:''}</div>`;
+  let html=`<div class="result-detail-view pro-detail">${heading}${summary}`;
+  if(wrong.length)html+=`<div class="result-review-section"><h4>⚠️ الأخطاء فقط</h4>${wrong.map(card).join('')}</div>`;
+  if(details.length)html+=`<div class="result-review-section"><h4>📋 ${kind==='exercise'?'التمرين كامل':'الامتحان كامل'}</h4>${details.map(card).join('')}</div>`;else html+=`<div class="empty">هذه النتيجة ما فيهاش تفاصيل الأسئلة. النتائج الجديدة من التمارين التفاعلية غادي تبان بالتفصيل.</div>`;
+  html+=`<details class="result-review-section"><summary style="cursor:pointer;font-weight:900">عرض JSON الأصلي</summary><pre class="result-raw-json">${esc(JSON.stringify(r,null,2))}</pre></details></div>`;return html
+}
+function showResult(i){resultDetails.innerHTML=renderStudentResultDetail(currentResults[i]);openModal('detailModal')}
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal').forEach(m=>m.onclick=e=>{if(e.target===m)m.classList.remove('open')});
+function render(force=false){return renderAsync(!!force)}
+async function renderAsync(force=false){
+  let user=window.studentAuthUser;
+  if(!window.studentAuthReady){renderLoading();return}
+  if(!user){renderLogin(currentAuthMode||'login');return}
+
+  let db=await loadDBAsync(force);
+  window.__currentPortalDB=db;
+  let tab=params().get('tab')||currentTab||'lessons';
+
+  // القرار النهائي ديال الأستاذ خاصو يجي من Firebase أولاً، ماشي من localStorage القديم.
+  let remoteStudent=null;
+  try{
+    if(window.DKStudentFirebase?.loadCurrentStudent){
+      remoteStudent=await window.DKStudentFirebase.loadCurrentStudent(user);
+    }
+  }catch(err){
+    firebaseLastError=(err&&err.message)?err.message:String(err||'');
+    console.warn('تعذر جلب التلميذ الحالي مباشرة من Firebase:',err);
+  }
+
+  if(remoteStudent){
+    remoteStudent={...remoteStudent,status:normalizePortalStatus(remoteStudent.status,remoteStudent)};
+    if(!db.students)db.students=[];
+    let i=db.students.findIndex(s=>s.id===remoteStudent.id || studentMatchesUser(s,user));
+    i>=0?db.students[i]=remoteStudent:db.students.unshift(remoteStudent);
+    localStorage.setItem('deutschKlasseCurrentStudentId', remoteStudent.id);
+    saveDB(db);
+    currentStudent=remoteStudent;
+  }else{
+    currentStudent=findStudentForUser(db,user);
+  }
+
+  if(!currentStudent){await renderNoStudent(db,user);return}
+
+  let accountStatus=normalizePortalStatus(currentStudent.status,currentStudent);
+  currentStudent.status=accountStatus;
+
+  if(accountStatus==='pending'){renderPending(currentStudent,user);return}
+  if(accountStatus==='rejected'){renderRejected(currentStudent,user);return}
+
+  currentStudentId=currentStudent.id;
+  portal.style.display='block';
+  notSelected.style.display='none';
+  pageTitle.textContent='مساحة التلميذ';
+  pageSubtitle.textContent='الدروس، التمارين، الامتحانات، والنتائج ديالك فبلاصة وحدة.';
+  studentName.textContent=currentStudent.name||'تلميذ';
+  avatar.textContent=(currentStudent.name||'D').trim().charAt(0).toUpperCase();
+  studentLevel.textContent='المستوى: '+(currentStudent.level||'غير محدد');
+  studentGroup.textContent=currentStudent.group?'الفوج: '+currentStudent.group:'بدون فوج';
+  studentNote.textContent=(currentStudent.email?('البريد: '+currentStudent.email+' · '):'')+(currentStudent.notes||'مرحبا بك، هنا تلقى غير الحوايج اللي فعّلها الأستاذ ليك.');
+  renderLessons(db,currentStudent.id);
+  renderExercises(db,currentStudent.id);
+  renderExams(db,currentStudent);
+  renderResults(currentStudent);
+  renderCompleted();
+  const finalTab=DK_PORTAL_TABS.includes(tab)?tab:'lessons';
+  showTab(finalTab);
+  applyPortalSectionMode(finalTab);
+  applyInterfaceLanguage();
+}
+window.addEventListener('storage',()=>render(true));
+window.addEventListener('popstate',()=>render(false));
+setInterval(()=>{
+  if(authCardVisible()||studentAuthBusy)return;
+  // ما نعاودوش نبنيو واجهة الامتحانات كل 4 ثواني والتلميذ فاتح لائحة الأجزاء،
+  // لأن إعادة البناء كانت كتخلي القائمة تسكر أو الصفحة تقفز.
+  if(currentTab==='exams' && document.querySelector('.partial-exam-group.open'))return;
+  render(false);
+},4000);
+render(true);
+</script>
+
+<script>
+(function(){
+  function closeOtherAttemptMenus(current){
+    document.querySelectorAll('.attempt-picker details[open]').forEach(function(d){
+      if(d !== current) d.removeAttribute('open');
+    });
+  }
+  function positionAttemptMenu(details){
+    if(!details || !details.open) return;
+    const summary = details.querySelector('summary');
+    const menu = details.querySelector('.attempt-menu');
+    if(!summary || !menu) return;
+    menu.style.visibility = 'hidden';
+    menu.style.left = '0px';
+    menu.style.top = '0px';
+    menu.style.maxHeight = '';
+    requestAnimationFrame(function(){
+      const gap = 8;
+      const margin = 12;
+      const rect = summary.getBoundingClientRect();
+      const menuRect = menu.getBoundingClientRect();
+      const width = Math.min(menuRect.width || 260, window.innerWidth - margin * 2);
+      const spaceBelow = window.innerHeight - rect.bottom - margin;
+      const spaceAbove = rect.top - margin;
+      let top;
+      let maxHeight;
+      if(spaceBelow >= Math.min(menuRect.height, 220) || spaceBelow >= spaceAbove){
+        top = rect.bottom + gap;
+        maxHeight = Math.max(160, spaceBelow - gap);
+      }else{
+        maxHeight = Math.max(160, spaceAbove - gap);
+        top = rect.top - Math.min(menuRect.height, maxHeight) - gap;
+      }
+      let left = rect.right - width;
+      if(left < margin) left = margin;
+      if(left + width > window.innerWidth - margin) left = window.innerWidth - margin - width;
+      if(top < margin) top = margin;
+      if(top > window.innerHeight - margin - 80) top = Math.max(margin, window.innerHeight - margin - Math.min(menuRect.height, maxHeight));
+      menu.style.width = width + 'px';
+      menu.style.left = left + 'px';
+      menu.style.top = top + 'px';
+      menu.style.maxHeight = Math.min(maxHeight, window.innerHeight - margin * 2) + 'px';
+      menu.style.visibility = 'visible';
+    });
+  }
+  document.addEventListener('toggle', function(e){
+    const details = e.target;
+    if(!details || !details.matches || !details.matches('.attempt-picker details')) return;
+    if(details.open){
+      closeOtherAttemptMenus(details);
+      positionAttemptMenu(details);
+    }
+  }, true);
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.attempt-picker')) return;
+    document.querySelectorAll('.attempt-picker details[open]').forEach(function(d){d.removeAttribute('open')});
+  });
+  ['scroll','resize'].forEach(function(evt){
+    window.addEventListener(evt, function(){
+      document.querySelectorAll('.attempt-picker details[open]').forEach(positionAttemptMenu);
+    }, true);
+  });
+  window.__positionAttemptMenus = function(){
+    document.querySelectorAll('.attempt-picker details[open]').forEach(positionAttemptMenu);
+  };
+})();
+</script>
+
+</body>
+</html>
