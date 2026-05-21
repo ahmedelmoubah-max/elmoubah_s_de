@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Prüfung komplett</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Tahoma,sans-serif}
+body{min-height:100vh;background:#eef4fb;color:#102033;padding-bottom:24px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;cursor:pointer;text-align:right}
+.header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #d9e4ef;box-shadow:0 2px 12px rgba(15,35,60,.06)}
+.header-inner{max-width:1050px;margin:auto;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.back{background:#0b2b4a;color:#fff;border-radius:15px;padding:12px 14px;font-weight:900;white-space:nowrap}
+.title h1{font-size:22px;color:#102033;line-height:1.2}
+.title p{font-size:13px;color:#64748b;margin-top:3px}
+.wrap{max-width:1050px;margin:auto;padding:16px 14px 24px}
+.hero{background:linear-gradient(135deg,#0b2b4a,#1f4b7a);color:white;border-radius:28px;padding:22px 18px;box-shadow:0 18px 35px rgba(11,43,74,.22);margin-bottom:14px}
+.hero h2{font-size:28px;margin-bottom:8px}
+.hero p{line-height:1.75;color:rgba(255,255,255,.84)}
+.statusbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.statuspill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900}
+.note{background:#fffbea;border:1px solid #facc15;color:#713f12;border-radius:18px;padding:13px;line-height:1.7;margin:12px 0;font-weight:800}
+.note.red{background:#fff1f2;border-color:#fecaca;color:#991b1b}
+.search{margin-top:14px;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px}
+.search input{width:100%;background:transparent;border:0;outline:0;color:white;font-size:16px;direction:ltr;text-align:left}
+.search input::placeholder{color:rgba(255,255,255,.68)}
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.exam-card{background:#fff;border:1px solid #dbe7f2;border-radius:22px;padding:14px;display:grid;grid-template-columns:50px 1fr;gap:11px;align-items:center;box-shadow:0 1px 10px rgba(15,35,60,.05);transition:.18s ease;color:#102033}
+.exam-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,43,74,.12)}
+.exam-card.locked{background:#fff7f7;border-color:#fecaca}
+.exam-card.pending{background:#fffbea;border-color:#fde68a}
+.exam-card.rejected{background:#fff1f2;border-color:#fecaca}
+.exam-card.open{background:#f0fdf4;border-color:#bbf7d0}
+.exam-num{width:46px;height:46px;border-radius:16px;background:#eff6ff;color:#1e40af;display:grid;place-items:center;font-weight:950}
+.exam-card.locked .exam-num,.exam-card.rejected .exam-num{background:#fee2e2;color:#991b1b}
+.exam-card.pending .exam-num{background:#fef3c7;color:#92400e}
+.exam-card.open .exam-num{background:#dcfce7;color:#166534}
+.exam-info{min-width:0}
+.exam-info h3{font-size:18px;margin-bottom:5px;color:#102033;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exam-info p{font-size:12px;color:#64748b;line-height:1.45}
+.exam-state{grid-column:1/-1;border-radius:15px;padding:12px;text-align:center;font-weight:950;margin-top:4px;background:#fee2e2;color:#991b1b}
+.exam-card.pending .exam-state{background:#fef3c7;color:#92400e}
+.exam-card.open .exam-state{background:#dcfce7;color:#166534}
+.exam-card.rejected .exam-state{background:#fee2e2;color:#991b1b}
+.empty{display:none;background:#fff;border:1px dashed #a9bdd2;border-radius:20px;padding:24px;text-align:center;color:#64748b;margin-top:12px}
+.refresh-btn{background:#fff;color:#0b2b4a;border:1px solid #bfdbfe;border-radius:14px;padding:10px 12px;font-weight:900;margin-top:10px}
+@media(max-width:600px){.header-inner{align-items:flex-start}.title h1{font-size:19px}.hero h2{font-size:23px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-inner"><div class="title"><h1>Prüfung komplett</h1><p>الامتحانات الكاملة مقفولة حتى يوافق الأستاذ</p></div><a class="back" href="index.html">رجوع للرئيسية</a></div></header>
+<main class="wrap">
+  <section class="hero">
+    <h2>لائحة الامتحانات الكاملة</h2>
+    <p>كل امتحان كامل كيبقى مقفول. التلميذ يقدر يصيفط طلب فتح، ومنين الأستاذ يوافق فـ Firebase غادي يتحل الامتحان.</p>
+    <div class="statusbar"><span class="statuspill" id="openCount">0/11 مفتوح</span><span class="statuspill" id="pendingCount">0 طلب مرسل</span><span class="statuspill">موافقة الأستاذ ضرورية</span></div>
+    <button class="refresh-btn" type="button" onclick="refreshAccess(true)">تحديث الموافقة من الأستاذ</button>
+    <label class="search"><span>🔎</span><input id="q" placeholder="search: annika, eva, iris..." oninput="filterList(this.value)"></label>
+  </section>
+  <div class="note">مهم: إذا الأستاذ وافق ومازال باين مقفول، ضغط على <b>تحديث الموافقة من الأستاذ</b> أو رجع للرئيسية ودخل من جديد.</div>
+  <div class="note red" id="authWarn" style="display:none">خاصك تدخل للحساب من <b>index.html</b> باش ترسل طلب فتح الامتحان للأستاذ.</div>
+  <section class="list" id="list">
+      <button class="exam-card locked" type="button" data-id="complete_annika" data-file="annika_pruefung_komplett.html" data-title="annika prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_annika')">
+        <div class="exam-num">01</div>
+        <div class="exam-info">
+          <h3>Annika</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_b1_pruefung" data-file="b1_pruefung_komplett.html" data-title="b1 prüfung prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_b1_pruefung')">
+        <div class="exam-num">02</div>
+        <div class="exam-info">
+          <h3>B1 Prüfung</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_carolina" data-file="carolina_pruefung_komplett.html" data-title="carolina prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_carolina')">
+        <div class="exam-num">03</div>
+        <div class="exam-info">
+          <h3>Carolina</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_eva" data-file="eva_pruefung_komplett.html" data-title="eva prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_eva')">
+        <div class="exam-num">04</div>
+        <div class="exam-info">
+          <h3>Eva</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_iris" data-file="iris_pruefung_komplett.html" data-title="iris prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_iris')">
+        <div class="exam-num">05</div>
+        <div class="exam-info">
+          <h3>Iris</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_jennifer" data-file="jennifer_pruefung_komplett.html" data-title="jennifer prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_jennifer')">
+        <div class="exam-num">06</div>
+        <div class="exam-info">
+          <h3>Jennifer</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_nadia" data-file="nadia_pruefung_komplett.html" data-title="nadia prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_nadia')">
+        <div class="exam-num">07</div>
+        <div class="exam-info">
+          <h3>Nadia</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_nicole" data-file="nicole_pruefung_komplett.html" data-title="nicole prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_nicole')">
+        <div class="exam-num">08</div>
+        <div class="exam-info">
+          <h3>Nicole</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_petra" data-file="petra_pruefung_komplett.html" data-title="petra prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_petra')">
+        <div class="exam-num">09</div>
+        <div class="exam-info">
+          <h3>Petra</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_sonja" data-file="sonja_pruefung_komplett.html" data-title="sonja prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_sonja')">
+        <div class="exam-num">10</div>
+        <div class="exam-info">
+          <h3>Sonja</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+      <button class="exam-card locked" type="button" data-id="complete_sophie" data-file="sophie_pruefung_komplett.html" data-title="sophie prüfung komplett الامتحانات الكاملة" onclick="handleExamClick('complete_sophie')">
+        <div class="exam-num">11</div>
+        <div class="exam-info">
+          <h3>Sophie</h3>
+          <p>B1 Prüfung komplett • مقفول حتى يوافق الأستاذ</p>
+        </div>
+        <div class="exam-state">🔒 مقفول</div>
+      </button>
+  </section>
+  <div class="empty" id="empty">ما كاين حتى امتحان بهذا الاسم.</div>
+</main>
+<script>
+const COMPLETE_ROWS = [{"id": "complete_annika", "title": "Annika", "file": "annika_pruefung_komplett.html"}, {"id": "complete_b1_pruefung", "title": "B1 Prüfung", "file": "b1_pruefung_komplett.html"}, {"id": "complete_carolina", "title": "Carolina", "file": "carolina_pruefung_komplett.html"}, {"id": "complete_eva", "title": "Eva", "file": "eva_pruefung_komplett.html"}, {"id": "complete_iris", "title": "Iris", "file": "iris_pruefung_komplett.html"}, {"id": "complete_jennifer", "title": "Jennifer", "file": "jennifer_pruefung_komplett.html"}, {"id": "complete_nadia", "title": "Nadia", "file": "nadia_pruefung_komplett.html"}, {"id": "complete_nicole", "title": "Nicole", "file": "nicole_pruefung_komplett.html"}, {"id": "complete_petra", "title": "Petra", "file": "petra_pruefung_komplett.html"}, {"id": "complete_sonja", "title": "Sonja", "file": "sonja_pruefung_komplett.html"}, {"id": "complete_sophie", "title": "Sophie", "file": "sophie_pruefung_komplett.html"}];
+const BASE = 'deutschKlasseApp/v1';
+const LS_USER='b1HybridStudent';
+const LS_TEIL_ACCESS='b1HybridTeilAccess';
+const LS_EXAM_ACCESS='b1HybridExamAccess';
+const LS_EXAM_REQUESTS='b1HybridExamRequests';
+const LS_ALL_EXAMS_REQUEST='b1HybridAllExamsRequest';
+function readJson(k,f){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(f));}catch(e){return f;}}
+function writeJson(k,v){try{localStorage.setItem(k,JSON.stringify(v||{}));}catch(e){}}
+function getUser(){return readJson(LS_USER,null);}
+function now(){return new Date().toISOString();}
+function examKey(id){return String(id||'exam').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')||'exam';}
+function safeId(v){return String(v||'').replace(/[^a-zA-Z0-9_\-]/g,'_');}
+function timeOf(v){if(!v||typeof v!=='object')return 0;const t=Date.parse(v.approvedAt||v.openedAt||v.updatedAt||v.lockedAt||v.rejectedAt||v.createdAt||0);return Number.isFinite(t)?t:0;}
+function isOpen(v){return v===true||(v&&typeof v==='object'&&v.active===true&&v.locked!==true&&String(v.status||'')!=='rejected');}
+function isClosed(v){return v===false||(v&&typeof v==='object'&&(v.active===false||v.locked===true||String(v.status||'')==='rejected'||String(v.examMode||'')==='closed'));}
+function access(){return readJson(LS_TEIL_ACCESS,{});}
+function exams(){return readJson(LS_EXAM_ACCESS,{});}
+function reqs(){return readJson(LS_EXAM_REQUESTS,{});}
+function directAccess(e){const a=access(), x=exams(), k=examKey(e.id);return x?.[k]??x?.[e.id]??a?.exams?.[k]??a?.exams?.[e.id]??null;}
+function allAccess(){const a=access();return a?.meta?.all_exams??a?.all_exams??a?.allPlatformExams??null;}
+function completeLockInfo(){const a=access(), locks=a.locks||{};const vals=[locks.all_exams,locks.allPlatformExams,locks.module_complete,locks.complete_all,locks.completeAll,a?.modules?.complete,a?.complete?.pruefung_komplett,a?.complete?.prufung_komplett];let active=false,t=0;vals.forEach(v=>{if(isClosed(v)){active=true;t=Math.max(t,timeOf(v));}});return {active,time:t};}
+function reqFor(e){const r=reqs(), k=examKey(e.id);return r?.[k]||r?.[e.id]||null;}
+function statusOf(e){
+  const lock=completeLockInfo();
+  const d=directAccess(e);
+  if(isOpen(d)&&(!lock.active||timeOf(d)>=lock.time))return 'open';
+  if(isClosed(d)&&(!lock.active||timeOf(d)>=lock.time))return 'rejected';
+  const all=allAccess();
+  if(isOpen(all)&&(!lock.active||timeOf(all)>=lock.time))return 'open';
+  const r=reqFor(e);
+  if(r&&String(r.status||'pending')==='rejected')return 'rejected';
+  if(r&&String(r.status||'pending')==='pending'&&(!lock.active||timeOf(r)>=lock.time))return 'pending';
+  return 'locked';
+}
+function stateText(st){if(st==='open')return '✅ مفتوح من طرف الأستاذ';if(st==='pending')return '⏳ طلب الفتح مرسل للأستاذ';if(st==='rejected')return '🔒 الطلب مرفوض / مقفول';return '🔒 مقفول حتى يوافق الأستاذ';}
+function render(){
+  const u=getUser();
+  document.getElementById('authWarn').style.display=u?'none':'block';
+  let open=0,pending=0;
+  COMPLETE_ROWS.forEach(e=>{
+    const card=document.querySelector(`[data-id="${e.id}"]`); if(!card)return;
+    const st=statusOf(e); if(st==='open')open++; if(st==='pending')pending++;
+    card.classList.remove('open','pending','locked','rejected'); card.classList.add(st==='open'?'open':st==='pending'?'pending':st==='rejected'?'rejected':'locked');
+    const p=card.querySelector('.exam-info p'); if(p)p.textContent='B1 Prüfung komplett • '+stateText(st).replace(/^✅ |^⏳ |^🔒 /,'');
+    const s=card.querySelector('.exam-state'); if(s)s.textContent=st==='open'?'فتح الامتحان ‹':stateText(st);
+  });
+  document.getElementById('openCount').textContent=open+'/'+COMPLETE_ROWS.length+' مفتوح';
+  document.getElementById('pendingCount').textContent=pending+' طلب مرسل';
+}
+function filterList(v){
+  v=String(v||'').toLowerCase().trim(); let shown=0;
+  document.querySelectorAll('.exam-card').forEach(function(c){
+    const ok=!v||(c.dataset.title||'').toLowerCase().includes(v)||(c.textContent||'').toLowerCase().includes(v);
+    c.style.display=ok?'grid':'none'; if(ok)shown++;
+  });
+  document.getElementById('empty').style.display=shown?'none':'block';
+}
+function handleExamClick(id){
+  const e=COMPLETE_ROWS.find(x=>x.id===id); if(!e)return;
+  const st=statusOf(e);
+  if(st==='open'){ window.location.href=e.file; return; }
+  requestCompleteExam(e, st==='rejected');
+}
+async function requestCompleteExam(e, forceNew){
+  const u=getUser();
+  if(!u){alert('خاصك تدخل للحساب من index.html أولا.');return;}
+  const k=examKey(e.id), r=reqFor(e);
+  if(!forceNew && r && String(r.status||'pending')==='pending'){alert('طلب فتح هذا الامتحان مرسل من قبل. تسنى موافقة الأستاذ.');return;}
+  if(!navigator.onLine){
+    const local=reqs(); local[k]={id:safeId((u.id||u.uid||'student')+'_complete_'+k),studentId:u.id||u.uid||'local_student',authUid:u.authUid||u.uid||'',studentName:studentName(u),email:u.email||'',phone:u.phone||'',level:u.level||'B1',module:'complete',moduleLabel:'Prüfung komplett',part:'Prüfung komplett',partKey:'pruefung_komplett',examId:e.id,examKey:k,examTitle:e.title,examFile:e.file,status:'pending',type:'exam_access',category:'complete_pruefung',scope:'complete_pruefung_exam',requestKind:'complete_pruefung_exam',completeExam:true,text:'طلب فتح الامتحان الكامل: '+e.title+' — Prüfung komplett',message:'طلب فتح الامتحان الكامل: '+e.title+' — Prüfung komplett',createdAt:now(),updatedAt:now(),localOnly:true};
+    writeJson(LS_EXAM_REQUESTS,local); render(); alert('تم حفظ الطلب محلياً. منين ترجع connexion ضغط مرة أخرى باش يتسيفط للأستاذ.'); return;
+  }
+  if(!window.__sendCompleteExamRequest){alert('جاري تحميل Firebase. عاود ضغط بعد ثواني.');return;}
+  await window.__sendCompleteExamRequest(e, forceNew);
+}
+function studentName(u){return String(((u.firstName||'')+' '+(u.lastName||'')).trim()||u.name||'تلميذ');}
+window.refreshAccess=function(showMsg){ if(window.__refreshCompleteAccess) return window.__refreshCompleteAccess(showMsg); render(); if(showMsg)alert('تم تحديث الحالة المحلية.'); };
+document.addEventListener('DOMContentLoaded',render);
+window.addEventListener('storage',render);
+setTimeout(render,100);
+</script>
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js';
+import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
+const firebaseConfig={apiKey:'AIzaSyB-lpaskp-NqpuNv91P7m9FNAgLAaRPjcQ',authDomain:'elmoubah-11b42.firebaseapp.com',databaseURL:'https://elmoubah-11b42-default-rtdb.firebaseio.com',projectId:'elmoubah-11b42',storageBucket:'elmoubah-11b42.appspot.com',messagingSenderId:'337813107651',appId:'1:337813107651:web:43d4753427c5588af34376',measurementId:'G-JJFT8K8P9V'};
+const BASE='deutschKlasseApp/v1';
+const app=getApps().length?getApps()[0]:initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getDatabase(app);
+function getUserLocal(){try{return JSON.parse(localStorage.getItem('b1HybridStudent')||'null');}catch(e){return null;}}
+function writeJson(k,v){try{localStorage.setItem(k,JSON.stringify(v||{}));}catch(e){}}
+function readJson(k,f){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(f));}catch(e){return f;}}
+function now(){return new Date().toISOString();}
+function examKey(id){return String(id||'exam').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')||'exam';}
+function safeId(v){return String(v||'').replace(/[^a-zA-Z0-9_\-]/g,'_');}
+function studentName(u){return String(((u.firstName||'')+' '+(u.lastName||'')).trim()||u.name||'تلميذ');}
+function objectToArray(value,idField='id'){if(Array.isArray(value))return value.filter(Boolean).map((x,i)=>({...x,[idField]:x?.[idField]||x?.id||String(i)}));if(value&&typeof value==='object')return Object.keys(value).map(k=>({...(value[k]||{}),[idField]:(value[k]&&value[k][idField])||k}));return [];}
+async function refreshFromFirebase(showMsg=false){
+  const u=getUserLocal(); if(!u){render(); return;}
+  try{
+    const accessSnap=await get(ref(db,`${BASE}/studentAccess/${u.id}`));
+    const access=accessSnap.exists()?accessSnap.val():{};
+    localStorage.setItem('b1HybridTeilAccess',JSON.stringify(access||{}));
+    localStorage.setItem('b1HybridExamAccess',JSON.stringify((access&&access.exams)||{}));
+    const reqSnap=await get(ref(db,`${BASE}/accessRequests`));
+    const mine=objectToArray(reqSnap.val(),'id').filter(r=>String(r.studentId||'')===String(u.id)&&String(r.type||'')==='exam_access');
+    const reqs={};
+    mine.forEach(r=>{reqs[r.examKey||examKey(r.examId||r.itemId)]=r;});
+    const allReq=objectToArray(reqSnap.val(),'id').filter(r=>String(r.studentId||'')===String(u.id)&&String(r.scope||r.requestKind||'')==='all_platform_exams').sort((a,b)=>(new Date(b.updatedAt||b.createdAt||b.rejectedAt||b.approvedAt||0).getTime()||0)-(new Date(a.updatedAt||a.createdAt||a.rejectedAt||a.approvedAt||0).getTime()||0))[0]||null;
+    writeJson('b1HybridExamRequests',reqs); writeJson('b1HybridAllExamsRequest',allReq);
+    render(); if(showMsg) alert('تم تحديث الموافقة من الأستاذ.');
+  }catch(err){render(); if(showMsg) alert('تعذر تحديث الصلاحيات: '+(err?.message||err));}
+}
+window.__refreshCompleteAccess=refreshFromFirebase;
+window.__sendCompleteExamRequest=async function(e, forceNew=false){
+  const u=getUserLocal(); if(!u){alert('خاصك تدخل للحساب من index.html أولا.');return;}
+  const k=examKey(e.id);
+  const reqId=safeId((u.id||u.uid||'student')+'_complete_'+k+(forceNew?'_'+Date.now():''));
+  const text='طلب فتح الامتحان الكامل: '+e.title+' — Prüfung komplett';
+  const payload={
+    id:reqId,studentId:u.id||u.uid||'local_student',authUid:u.authUid||u.uid||'',studentName:studentName(u),email:u.email||'',phone:u.phone||'',level:u.level||'B1',
+    module:'complete',moduleLabel:'Prüfung komplett',part:'Prüfung komplett',partKey:'pruefung_komplett',examId:e.id,examKey:k,examTitle:e.title,examFile:e.file,
+    status:'pending',type:'exam_access',category:'complete_pruefung',scope:'complete_pruefung_exam',requestKind:'complete_pruefung_exam',completeExam:true,text,message:text,createdAt:now(),updatedAt:now()
+  };
+  try{
+    const updates={};
+    updates[`${BASE}/accessRequests/${reqId}`]=payload;
+    updates[`${BASE}/teacherInbox/${reqId}`]={...payload,message:text,status:'unread',teacherVisible:true};
+    await update(ref(db),updates);
+    const local=readJson('b1HybridExamRequests',{}); local[k]=payload; writeJson('b1HybridExamRequests',local);
+    render(); alert('تم إرسال طلب فتح الامتحان الكامل للأستاذ. منين يوافق، غادي يتفتح لك هذا الامتحان.');
+  }catch(err){alert('تعذر إرسال الطلب: '+(err?.message||err));}
+};
+onAuthStateChanged(auth,()=>{setTimeout(()=>refreshFromFirebase(false),150);});
+setTimeout(()=>refreshFromFirebase(false),500);
+</script>
+</body>
+</html>
